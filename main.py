@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import StreamingResponse
 from jinja2 import Environment, FileSystemLoader
 from weasyprint import HTML
+from fastapi.middleware.cors import CORSMiddleware
 import io
 
 app = FastAPI()
@@ -24,3 +25,16 @@ async def generate_report(request: Request):
         media_type="application/pdf",
         headers={"Content-Disposition": "inline; filename=class_report.pdf"}
     )
+
+def read_root():
+    return {"status": "FastAPI is live", "endpoint": "/generate-report"}
+
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Replace with your Flutter Web domain if needed
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
