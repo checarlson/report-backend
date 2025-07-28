@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>First Term Progress Record</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            margin: 30px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            width: 840px; /* Set header width to match tables */
+            margin: 0 auto; /* Center the header */
+        }
+
+        .left-header,
+        .right-header {
+            width: 345px; /* Calculated width for left and right text blocks
+            (840 - 150) / 2 */
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+
+        .center-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 150px;
+            height: 150px; /* Keep height for the circle div */
+            flex-shrink: 0; /* Ensure logo container maintains its width */
+        }
+
+        .center-logo div { /* This targets the inner circle div */
+            border: 1px solid green;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: green;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .title {
+            text-align: center;
+            margin: 10px 0;
+            width: 840px; /* Align title width with tables */
+            margin: 10px auto; /* Center the title */
+        }
+
+        /* This applies to the main subject/grades table */
+        table {
+            width: 840px; /* Main table width */
+            border-collapse: collapse;
+            margin-top: 10px;
+            margin-left: auto; /* Ensure this table is also centered */
+            margin-right: auto; /* Ensure this table is also centered */
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 5px;
+            vertical-align: top;
+        }
+
+        th {
+            text-align: center;
+            background: #f3f3f3;
+        }
+
+        .no-border {
+            border: none;
+        }
+
+        .subject-m {
+            padding-left: 20px;
+        }
+
+        .form-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            width: 840px; /* Form container width to match tables */
+            margin-top: 10px;
+            margin-left: auto; /* Center the form container */
+            margin-right: auto; /* Center the form container */
+        }
+
+        .photo-box {
+            width: 120px;
+            height: 140px;
+            border: 1px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+            flex-shrink: 0;
+        }
+
+        .form-table {
+            border-collapse: collapse;
+            width: 700px; /* Calculated: 840 (container) - 120 (photo) - 20
+            (gap) = 700 */
+            font-size: smaller;
+        }
+
+        .form-table td, .form-table th {
+            border: 1px solid #000;
+            padding: 3px;
+            vertical-align: top;
+        }
+
+        .form-table input[type="checkbox"] {
+            transform: scale(1.2);
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+        .dob-gender-combined {
+            display: flex;
+            justify-content: flex-start;
+            gap: 160px;
+        }
+
+        .class-master-cell {
+            height: 40px;
+        }
+
+        /* Styles for the last table (.tg) */
+        .tg {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 840px; /* Explicitly set the width here, sum of cols is 840
+            */
+            margin: 0 auto; /* Center the last table */
+            table-layout: fixed;
+        }
+
+        .tg td, .tg th {
+            border-color:black;
+            border-style:solid;
+            border-width:1px;
+            font-family:Arial, sans-serif;
+            font-size:12px;
+            overflow:hidden;
+            padding: 1px 1px;
+            white-space: nowrap;
+            vertical-align: middle;
+            line-height: 1.1;
+            text-overflow: ellipsis;
+            text-align: center;
+        }
+
+        .tg th {
+            font-weight:normal;
+            white-space: nowrap;
+        }
+
+        /* Specific class overrides */
+        .tg
+        .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
+        .tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+        .tg
+        .tg-0pky{border-color:inherit;text-align:left;vertical-align:middle}
+
+        /* Explicit Column Widths for .tg (Total: 840px) */
+        .tg col:nth-child(1) { width: 100px; }
+        /* Last row merged cells */
+        .tg tr:last-child .tg-c3ow:nth-child(1) { width: 250px; max-width:
+        250px; }
+        .tg tr:last-child .tg-c3ow:nth-child(2) { width: 120px; max-width:
+        120px; }
+        .tg tr:last-child .tg-c3ow:nth-child(3) { width: 120px; max-width:
+        120px; }
+        .tg tr:last-child .tg-c3ow:nth-child(4) { width: 90px; max-width: 90px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="left-header"> <strong>REPUBLIC OF CAMEROON</strong><br>
+            <em>Peace – Work – Fatherland</em><br>
+            ***************<br>
+            MINISTRY OF SECONDARY EDUCATION<br>
+            ***************<br>
+            REGIONAL DELEGATION OF….<br>
+            ***************<br>
+            DIVISIONAL DELEGATION….<br>
+            ***************<br>
+            HIGH SCHOOL
+        </div>
+        <div class="center-logo">
+            <div>
+                School logo and<br>
+                registration<br>
+                number
+            </div>
+        </div>
+        <div class="right-header"> <strong>RÉPUBLIQUE DU CAMEROUN</strong><br>
+            <em>Paix – Travail – Patrie</em><br>
+            ***************<br>
+            MINISTÈRE DES ENSEIGNEMENTS SECONDAIRES<br>
+            ***************<br>
+            DÉLÉGATION RÉGIONALE DE …<br>
+            ***************<br>
+            DÉLÉGATION DÉPARTEMENTALE DE….<br>
+            ***************<br>
+            LYCÉE DE………...
+        </div>
+    </div>
+
+    <div class="title">
+        <h3>FIRST TERM PROGRESS RECORD</h3>
+        <p>School Year: ……/……..</p>
+    </div>
+
+    <div class="form-container">
+        <div class="photo-box">
+            Student’s<br>photograph
+        </div>
+        <table class="form-table">
+            <tr>
+                <td colspan="2">Name of Student : Che Carlson</td>
+                <td><strong>Class : Form 1</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="position: relative;">
+                    Date and place of birth:
+                    <span style="position: absolute; right:
+                    40px;">Gender:</span>
+                </td>
+                <td>Class enrolment :</td>
+            </tr>
+            <tr>
+                <td style="width: 40%;">Unique Identification number:</td>
+                <td style="width: 35%; padding-left: 20px;">
+                    Repeater :
+                    Yes <input type="checkbox" />
+                    No <input type="checkbox" />
+                </td>
+                <td style="width: 25%;">Number of subjects :</td>
+            </tr>
+            <tr>
+                <td colspan="2" rowspan="3">
+                    Parent’s/Guardian’s name and contact:<br>
+                </td>
+                <td>Number passed :</td>
+            </tr>
+            <tr>
+                <td class="class-master-cell">Class master:</td>
+            </tr>
+        </table>
+    </div>
+
+    <table>
+        <tr>
+            <th>Subject and Teacher’s Names</th>
+            <th>COMPETENCIES EVALUATED</th>
+            <th>MK/20</th>
+            <th>AV/20</th>
+            <th>Coef</th>
+            <th>AV x coef</th>
+            <th>GRADE</th>
+            <th>[Min - Max]</th>
+            <th>Remarks and Teacher’s signature</th>
+        </tr>
+        <tr>
+            <td rowspan="2">FRENCH<br><div class="subject-m">M</div></td>
+            <td>Se servir de ses connaissances en français pour se présenter,
+            échanger sur sa famille nucléaire et la vie dans sa
+            communauté.</td>
+            <td></td><td></td><td>4</td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Utiliser les ressources nécessaires du français pour échanger
+            sur le cadre de vie familiale et l’hygiène et salubrité y
+            afférentes.</td>
+            <td></td><td></td><td
+            class="no-border"></td><td></td><td></td><td></td><td></td>
+        </tr>
+
+        <tr>
+            <td rowspan="2">COMPUTER SCIENCES<br><div
+            class="subject-m">M</div></td>
+            <td>Classify computers based on the characteristics of their
+            components and identify their use.</td>
+            <td></td><td></td><td>2</td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Identify the role of computers in different domains and
+            classify hardware and software components of a computer.</td>
+            <td></td><td></td><td
+            class="no-border"></td><td></td><td></td><td></td><td></td>
+        </tr>
+
+        <tr>
+            <td rowspan="2">ART AND CULTURE<br><div
+            class="subject-m">M</div></td>
+            <td>Develop artistic and cultural appreciation and skills.</td>
+            <td></td><td></td><td>1</td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Explore various art forms and cultural expressions.</td>
+            <td></td><td></td><td
+            class="no-border"></td><td></td><td></td><td></td><td></td>
+        </tr>
+
+        <tr>
+            <td rowspan="2">LITERATURE IN ENGLISH<br><div
+            class="subject-m">M</div></td>
+            <td>Analyze and interpret literary texts.</td>
+            <td></td><td></td><td>2</td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Evaluate themes, styles, and literary devices.</td>
+            <td></td><td></td><td
+            class="no-border"></td><td></td><td></td><td></td><td></td>
+        </tr>
+
+        <tr>
+            <td rowspan="2">ENGLISH LANGUAGE<br><div
+            class="subject-m">M</div></td>
+            <td>Communicate effectively in English.</td>
+            <td></td><td></td><td>4</td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Enhance grammar, vocabulary, and comprehension.</td>
+            <td></td><td></td><td
+            class="no-border"></td><td></td><td></td><td></td><td></td>
+        </tr>
+
+        <tr>
+            <td rowspan="2">NATIONAL CUTURE<br><div
+            class="subject-m">M</div></td>
+            <td>Understand and appreciate national cultural heritage.</td>
+            <td></td><td></td><td>1</td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Recognize the diversity within national culture.</td>
+            <td></td><td></td><td
+            class="no-border"></td><td></td><td></td><td></td><td></td>
+        </tr>
+
+        <tr>
+            <td rowspan="2">NATIONAL LANGUAGE<br><div
+            class="subject-m">M</div></td>
+            <td>Master the designated national language.</td>
+            <td></td><td></td><td>1</td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Apply language skills in various contexts.</td>
+            <td></td><td></td><td
+            class="no-border"></td><td></td><td></td><td></td><td></td>
+        </tr>
+
+        <tr>
+            <td rowspan="2">CITIZENSHIP EDUCATION<br><div
+            class="subject-m">M</div></td>
+            <td>Understand rights, responsibilities, and civic duties.</td>
+            <td></td><td></td><td>2</td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Promote active participation in community and national
+            affairs.</td>
+            <td></td><td></td><td
+            class="no-border"></td><td></td><td></td><td></td><td></td>
+        </tr>
+
+        <tr>
+            <td rowspan="2">GEOGRAPHY<br><div class="subject-m">M</div></td>
+            <td>Interpret geographical data and concepts.</td>
+            <td></td><td></td><td>2</td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Analyze human and physical geographical patterns.</td>
+            <td></td><td></td><td
+            class="no-border"></td><td></td><td></td><td></td><td></td>
+        </tr>
+
+        <tr>
+            <td rowspan="2">HISTORY<br><div class="subject-m">M</div></td>
+            <td>Analyze historical events and their significance.</td>
+            <td></td><td></td><td>2</td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Understand cause-and-effect relationships in historical
+            contexts.</td>
+            <td></td><td></td><td
+            class="no-border"></td><td></td><td></td><td></td><td></td>
+        </tr>
+
+        <tr>
+            <td rowspan="2">BIOLOGY<br><div class="subject-m">M</div></td>
+            <td>Understand biological principles and life processes.</td>
+            <td></td><td></td><td>2</td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Explore ecological relationships and human impact on
+            nature.</td>
+            <td></td><td></td><td
+            class="no-border"></td><td></td><td></td><td></td><td></td>
+        </tr>
+
+        <tr>
+            <td rowspan="2">CHEMISTRY<br><div class="subject-m">M</div></td>
+            <td>Apply chemical principles to real-world phenomena.</td>
+            <td></td><td></td><td>2</td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Understand properties and reactions of matter.</td>
+            <td></td><td></td><td
+            class="no-border"></td><td></td><td></td><td></td><td></td>
+        </tr>
+
+        <tr>
+            <td rowspan="2">HOME ECONOMIC<br><div
+            class="subject-m">M</div></td>
+            <td>Apply principles of home management and consumerism.</td>
+            <td></td><td></td><td>2</td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Develop practical skills for daily living.</td>
+            <td></td><td></td><td
+            class="no-border"></td><td></td><td></td><td></td><td></td>
+        </tr>
+
+        <tr>
+            <td rowspan="2">MATHEMATIC<br><div class="subject-m">M</div></td>
+            <td>Solve mathematical problems and apply quantitative
+            reasoning.</td>
+            <td></td><td></td><td>4</td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Develop logical thinking and problem-solving strategies.</td>
+            <td></td><td></td><td
+            class="no-border"></td><td></td><td></td><td></td><td></td>
+        </tr>
+
+        <tr>
+            <td rowspan="2">PHYSIC<br><div class="subject-m">M</div></td>
+            <td>Understand physical laws and their applications.</td>
+            <td></td><td></td><td>2</td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Conduct experiments and interpret physical phenomena.</td>
+            <td></td><td></td><td
+            class="no-border"></td><td></td><td></td><td></td><td></td>
+        </tr>
+
+        <tr>
+            <td rowspan="2">SPORT AND PHYSICAL EDUCATION<br><div
+            class="subject-m">M</div></td>
+            <td>Develop physical fitness and healthy habits.</td>
+            <td></td><td></td><td>2</td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Understand principles of various sports and physical
+            activities.</td>
+            <td></td><td></td><td
+            class="no-border"></td><td></td><td></td><td></td><td></td>
+        </tr>
+
+        <tr>
+            <td rowspan="2">MANUAL LABOUR<br><div
+            class="subject-m">M</div></td>
+            <td>Acquire practical skills for various crafts.</td>
+            <td></td><td></td><td>1</td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Demonstrate proficiency in hands-on tasks.</td>
+            <td></td><td></td><td
+            class="no-border"></td><td></td><td></td><td></td><td></td>
+        </tr>
+    </table>
+
+    <table class="tg">
+        <colgroup>
+            <col style="width: 100px;">
+            <col style="width: 25px;">
+            <col style="width: 90px;">
+            <col style="width: 25px;">
+            <col style="width: 85px;">
+            <col style="width: 25px;">
+            <col style="width: 60px;">
+            <col style="width: 15px;">
+            <col style="width: 90px;">
+            <col style="width: 25px;">
+        </colgroup>
+        <thead>
+            <tr>
+                <th class="tg-9wq8" colspan="4">Discipline</th>
+                <th class="tg-9wq8" colspan="4">student performance</th>
+                <th class="tg-9wq8" colspan="2">class profile</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="tg-0pky">unjustified abs (h)</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-0pky">conduct warning</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-0pky">total score</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-0pky" colspan="2">remark</td>
+                <td class="tg-0pky">class average</td>
+                <td class="tg-0pky"></td>
+            </tr>
+            <tr>
+                <td class="tg-0pky" rowspan="2">justified abs (h)</td>
+                <td class="tg-0pky" rowspan="2"></td>
+                <td class="tg-0pky" rowspan="2">reprimand</td>
+                <td class="tg-0pky" rowspan="2"></td>
+                <td class="tg-0pky" rowspan="2">coef</td>
+                <td class="tg-0pky" rowspan="2"></td>
+                <td class="tg-0pky">CVWA</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-0pky" rowspan="2">[min-max]</td>
+                <td class="tg-0pky" rowspan="2"></td>
+            </tr>
+            <tr>
+                <td class="tg-0pky">CWA</td>
+                <td class="tg-0pky"></td>
+            </tr>
+            <tr>
+                <td class="tg-0pky" rowspan="2">late(nbr of times)</td>
+                <td class="tg-0pky" rowspan="2"></td>
+                <td class="tg-0pky" rowspan="2">supension</td>
+                <td class="tg-0pky" rowspan="2"></td>
+                <td class="tg-0pky" rowspan="2">term average</td>
+                <td class="tg-0pky" rowspan="2"></td>
+                <td class="tg-0pky">CA</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-0pky" rowspan="2">number passed</td>
+                <td class="tg-0pky" rowspan="2"></td>
+            </tr>
+            <tr>
+                <td class="tg-0pky">CAA</td>
+                <td class="tg-0pky"></td>
+            </tr>
+            <tr>
+                <td class="tg-0pky">punishmen(hour)</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-0pky">dismissed</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-0pky">grade</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-0pky">CNA</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-0pky">sucess rate(%)</td>
+                <td class="tg-0pky"></td>
+            </tr>
+            <tr>
+                <td class="tg-c3ow" colspan="4">remarks on student
+                performance</td>
+                <td class="tg-c3ow" colspan="2">parent's/guardian's
+                <br>signature<br><br>________<br><br></td>
+                <td class="tg-c3ow" colspan="2">class master
+                <br>signature<br><br>________<br><br></td>
+                <td class="tg-c3ow" colspan="2">the principal</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
