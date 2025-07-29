@@ -26,7 +26,7 @@ def read_root():
     return {"status": "FastAPI is live", "endpoint": "/generate-report"}
 
 
-""" @app.post("/generate-report")
+@app.post("/generate-report")
 async def generate_report(request: Request):
     data = await request.json()
 
@@ -34,7 +34,7 @@ async def generate_report(request: Request):
     print("📥 Incoming JSON:")
     pprint.pprint(data)
 
-    students = data.get("students", [])
+    students = data.get("students", [])[:1]  # Limit to first 1 students
 
     template = env.get_template("report_card.html")
     html_content = template.render(
@@ -47,27 +47,6 @@ async def generate_report(request: Request):
     pdf_buffer.seek(0)
     base64_pdf = base64.b64encode(pdf_buffer.read()).decode("utf-8")
 
-    return JSONResponse(content={"pdf_base64": base64_pdf}) """
-
-@app.post("/generate-report")
-async def generate_report(request: Request):
-    data = await request.json()
-    print("📥 JSON Received:", data)
-
-    # ✂️ Simple HTML to test rendering
-    html_content = f"""
-    <html>
-    <body>
-      <h1>PDF Test</h1>
-      <p>Student count: {len(data.get("students", []))}</p>
-    </body>
-    </html>
-    """
-
-    pdf_buffer = io.BytesIO()
-    HTML(string=html_content).write_pdf(pdf_buffer)
-    pdf_buffer.seek(0)
-    base64_pdf = base64.b64encode(pdf_buffer.read()).decode("utf-8")
-
     return JSONResponse(content={"pdf_base64": base64_pdf})
+
 
