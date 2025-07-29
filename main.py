@@ -33,7 +33,7 @@ def read_root():
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://schoolmanagement-703cc.web.app/"],  # Replace with your Flutter Web domain if needed
+    allow_origins=["https://schoolmanagement-703cc.web.app"],  # Replace with your Flutter Web domain if needed
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
