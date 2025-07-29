@@ -24,7 +24,7 @@ env = Environment(loader=FileSystemLoader("templates"))
 def read_root():
     return {"status": "FastAPI is live", "endpoint": "/generate-report"}
 
-@app.post("/generate-report")
+""" @app.post("/generate-report")
 async def generate_report(request: Request):
     # ✅ Load incoming JSON
     data = await request.json()
@@ -44,3 +44,25 @@ async def generate_report(request: Request):
     # ✅ Convert PDF to base64 and return in JSON
     base64_pdf = base64.b64encode(pdf_buffer.read()).decode("utf-8")
     return JSONResponse(content={"pdf_base64": base64_pdf})
+ """
+
+@app.post("/generate-report")
+async def generate_report(request: Request):
+    data = await request.json()
+
+    # ✅ Split out students and pass to template
+    students = data.get("students", [])
+
+    template = env.get_template("report_card.html")
+    html_content = template.render(
+        students=students,  # defines the 'students' variable
+        data=data           # gives access to data.class, data.term, etc.
+    )
+
+    pdf_buffer = io.BytesIO()
+    HTML(string=html_content).write_pdf(pdf_buffer)
+    pdf_buffer.seek(0)
+
+    base64_pdf = base64.b64encode(pdf_buffer.read()).decode("utf-8")
+    return JSONResponse(content={"pdf_base64": base64_pdf})
+
