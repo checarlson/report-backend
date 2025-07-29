@@ -2,362 +2,178 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>First Term Progress Record</title>
-    /* Reuse all your existing styles */
-    /* ... (your styles from before) ... */
-     <style>
-        body {
-            font-family: Arial, sans-serif;
-            font-size: 12px;
-            margin: 30px;
-        }
+  <title>Student Report</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 2cm;
+    }
 
-        .page {
-            size: A4;
-            margin: 0.5cm;
-            page-break-after: always;
-        }
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      margin: 0;
+    }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            text-align: center;
-            width: 840px; /* Set header width to match tables */
-            margin: 0 auto; /* Center the header */
-        }
+    .page {
+      page-break-after: always;
+    }
 
-        .left-header,
-        .right-header {
-            width: 345px; /* Calculated width for left and right text blocks
-            (840 - 150) / 2 */
-            flex-shrink: 0; /* Prevent shrinking */
-        }
+    .header {
+      display: table;
+      width: 100%;
+      margin-bottom: 20px;
+    }
 
-        .center-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 150px;
-            height: 150px; /* Keep height for the circle div */
-            flex-shrink: 0; /* Ensure logo container maintains its width */
-        }
+    .header-cell {
+      display: table-cell;
+      width: 33%;
+      vertical-align: top;
+      text-align: center;
+    }
 
-        .center-logo div { /* This targets the inner circle div */
-            border: 1px solid green;
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: green;
-            text-align: center;
-            font-size: 13px;
-        }
+    .title {
+      text-align: center;
+      font-size: 16px;
+      margin: 10px 0 5px;
+    }
 
-        .title {
-            text-align: center;
-            margin: 10px 0;
-            width: 840px; /* Align title width with tables */
-            margin: 10px auto; /* Center the title */
-        }
+    .form-container {
+      margin-top: 10px;
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
 
-        /* This applies to the main subject/grades table */
-        table {
-            width: 840px; /* Main table width */
-            border-collapse: collapse;
-            margin-top: 10px;
-            margin-left: auto; /* Ensure this table is also centered */
-            margin-right: auto; /* Ensure this table is also centered */
-        }
+    .photo-box {
+      display: table-cell;
+      width: 120px;
+      height: 140px;
+      border: 1px solid #000;
+      text-align: center;
+      vertical-align: middle;
+    }
 
-        table, th, td {
-            border: 1px solid black;
-        }
+    .form-table {
+      display: table-cell;
+      padding-left: 15px;
+    }
 
-        th, td {
-            padding: 5px;
-            vertical-align: top;
-        }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
 
-        th {
-            text-align: center;
-            background: #f3f3f3;
-        }
+    th, td {
+      border: 1px solid black;
+      padding: 4px;
+      text-align: center;
+    }
 
-        .no-border {
-            border: none;
-        }
-
-        .subject-m {
-            padding-left: 20px;
-        }
-
-        .form-container {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            width: 840px; /* Form container width to match tables */
-            margin-top: 10px;
-            margin-left: auto; /* Center the form container */
-            margin-right: auto; /* Center the form container */
-        }
-
-        .photo-box {
-            width: 120px;
-            height: 140px;
-            border: 1px solid #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 10px;
-            box-sizing: border-box;
-            flex-shrink: 0;
-        }
-
-        .form-table {
-            border-collapse: collapse;
-            width: 700px; /* Calculated: 840 (container) - 120 (photo) - 20
-            (gap) = 700 */
-            font-size: smaller;
-        }
-
-        .form-table td, .form-table th {
-            border: 1px solid #000;
-            padding: 3px;
-            vertical-align: top;
-        }
-
-        .form-table input[type="checkbox"] {
-            transform: scale(1.2);
-            margin-left: 5px;
-            margin-right: 5px;
-        }
-
-        .dob-gender-combined {
-            display: flex;
-            justify-content: flex-start;
-            gap: 160px;
-        }
-
-        .class-master-cell {
-            height: 40px;
-        }
-
-        /* Styles for the last table (.tg) */
-        .tg {
-            border-collapse: collapse;
-            border-spacing: 0;
-            width: 840px; /* Explicitly set the width here, sum of cols is 840
-            */
-            margin: 0 auto; /* Center the last table */
-            table-layout: fixed;
-        }
-
-        .tg td, .tg th {
-            border-color:black;
-            border-style:solid;
-            border-width:1px;
-            font-family:Arial, sans-serif;
-            font-size:12px;
-            overflow:hidden;
-            padding: 1px 1px;
-            white-space: nowrap;
-            vertical-align: middle;
-            line-height: 1.1;
-            text-overflow: ellipsis;
-            text-align: center;
-        }
-
-        .tg th {
-            font-weight:normal;
-            white-space: nowrap;
-        }
-
-        /* Specific class overrides */
-        .tg
-        .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
-        .tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
-        .tg
-        .tg-0pky{border-color:inherit;text-align:left;vertical-align:middle}
-
-        /* Explicit Column Widths for .tg (Total: 840px) */
-        .tg col:nth-child(1) { width: 100px; }
-        /* Last row merged cells */
-        .tg tr:last-child .tg-c3ow:nth-child(1) { width: 250px; max-width:
-        250px; }
-        .tg tr:last-child .tg-c3ow:nth-child(2) { width: 120px; max-width:
-        120px; }
-        .tg tr:last-child .tg-c3ow:nth-child(3) { width: 120px; max-width:
-        120px; }
-        .tg tr:last-child .tg-c3ow:nth-child(4) { width: 90px; max-width: 90px;
-        }
-
+    .summary-table td {
+      white-space: nowrap;
+    }
   </style>
 </head>
+
 <body>
-{% if data.students %}
   {% for student in students %}
   <div class="page">
 
-    <!-- HEADER -->
     <div class="header">
-      <div class="left-header">
-        <strong>REPUBLIC OF CAMEROON</strong><br>
+      <div class="header-cell">
+        REPUBLIC OF CAMEROON<br>
         <em>Peace – Work – Fatherland</em><br>
         ***************<br>
         MINISTRY OF SECONDARY EDUCATION<br>
         ***************<br>
-        REGIONAL DELEGATION OF….<br>
-        ***************<br>
-        DIVISIONAL DELEGATION….<br>
+        REGIONAL DELEGATION OF…<br>
         ***************<br>
         HIGH SCHOOL
       </div>
-
-      <div class="center-logo">
-        <div>
-          School logo and<br>
-          registration<br>
-          number
+      <div class="header-cell">
+        <div style="border: 1px solid green; border-radius: 50%; width: 120px; height: 120px; margin: auto;">
+          School Logo
         </div>
       </div>
-
-      <div class="right-header">
-        <strong>RÉPUBLIQUE DU CAMEROUN</strong><br>
+      <div class="header-cell">
+        RÉPUBLIQUE DU CAMEROUN<br>
         <em>Paix – Travail – Patrie</em><br>
         ***************<br>
         MINISTÈRE DES ENSEIGNEMENTS SECONDAIRES<br>
         ***************<br>
         DÉLÉGATION RÉGIONALE DE …<br>
         ***************<br>
-        DÉLÉGATION DÉPARTEMENTALE DE….<br>
-        ***************<br>
         LYCÉE DE………...
       </div>
     </div>
 
-    <!-- TITLE -->
     <div class="title">
-      <h3>{{ data.term|default('Term') }} PROGRESS RECORD</h3>
+      <h3>{{ data.term|default('First Term') }} PROGRESS RECORD</h3>
       <p>School Year: ……/……..</p>
     </div>
 
-    <!-- STUDENT INFO TABLE -->
     <div class="form-container">
       <div class="photo-box">Student’s<br>photograph</div>
-      <table class="form-table">
-        <tr>
-          <td colspan="2">Name of Student: {{ student.name }}</td>
-          <td><strong>Class : {{ data.class }}</strong></td>
-        </tr>
-        <tr>
-          <td colspan="2">Date and place of birth: ............<span style="float: right;">Gender: .......</span></td>
-          <td>Class enrolment: ..........</td>
-        </tr>
-        <tr>
-          <td>Unique Identification number:</td>
-          <td>
-            Repeater :
-            Yes <input type="checkbox" />
-            No <input type="checkbox" />
-          </td>
-          <td>Number of subjects: {{ student.subjects | length }}</td>
-        </tr>
-        <tr>
-          <td colspan="2" rowspan="3">
-            Parent’s/Guardian’s name and contact:<br>
-          </td>
-          <td>Number passed: .........</td>
-        </tr>
-        <tr>
-          <td class="class-master-cell">Class master:</td>
-        </tr>
-      </table>
+      <div class="form-table">
+        <p><strong>Name:</strong> {{ student.name }}</p>
+        <p><strong>Class:</strong> {{ data.class }}</p>
+        <p><strong>Gender:</strong> .......</p>
+        <p><strong>Number of Subjects:</strong> {{ student.subjects|length }}</p>
+        <p><strong>Term Average:</strong> {{ student.average }}</p>
+        <p><strong>Remark:</strong> {{ student.remark }}</p>
+      </div>
     </div>
 
-    <!-- SUBJECTS TABLE -->
     <table>
-      <tr>
-        <th>Subject</th>
-        <th>Eval 1</th>
-        <th>Eval 2</th>
-        <th>Average</th>
-        <th>Coef</th>
-        <th>Weighted</th>
-        <th>Grade</th>
-      </tr>
-      {% for subject in student.subjects %}
-      <tr>
-        <td>{{ subject.name }}</td>
-        <td>{{ subject.eval1 }}</td>
-        <td>{{ subject.eval2 }}</td>
-        <td>{{ subject.average }}</td>
-        <td>{{ subject.coef }}</td>
-        <td>{{ subject.weighted }}</td>
-        <td>{{ subject.grade }}</td>
-      </tr>
-      {% endfor %}
-    </table>
-
-    <!-- CLASS SUMMARY TABLE -->
-    <table class="tg">
       <thead>
         <tr>
-          <th colspan="4">Discipline</th>
-          <th colspan="4">Student Performance</th>
-          <th colspan="2">Class Profile</th>
+          <th>Subject</th>
+          <th>Eval 1</th>
+          <th>Eval 2</th>
+          <th>Average</th>
+          <th>Coef</th>
+          <th>Weighted</th>
+          <th>Grade</th>
         </tr>
       </thead>
       <tbody>
+        {% for subject in student.subjects %}
         <tr>
-          <td>Unjustified abs (h)</td><td></td>
-          <td>Conduct warning</td><td></td>
-          <td>Total score</td><td>{{ student.total_score | default('') }}</td>
-          <td colspan="2">{{ student.remark }}</td>
-          <td>Class average</td><td>{{ data.class_average | default('') }}</td>
+          <td>{{ subject.name }}</td>
+          <td>{{ subject.eval1 }}</td>
+          <td>{{ subject.eval2 }}</td>
+          <td>{{ subject.average }}</td>
+          <td>{{ subject.coef }}</td>
+          <td>{{ subject.weighted }}</td>
+          <td>{{ subject.grade }}</td>
         </tr>
-        <tr>
-          <td rowspan="2">Justified abs (h)</td><td rowspan="2"></td>
-          <td rowspan="2">Reprimand</td><td rowspan="2"></td>
-          <td rowspan="2">Coef</td><td rowspan="2"></td>
-          <td>CVWA</td><td></td>
-          <td rowspan="2">[min-max]</td><td rowspan="2"></td>
-        </tr>
-        <tr>
-          <td>CWA</td><td></td>
-        </tr>
-        <tr>
-          <td rowspan="2">Late (times)</td><td rowspan="2"></td>
-          <td rowspan="2">Suspension</td><td rowspan="2"></td>
-          <td rowspan="2">Term average</td><td rowspan="2">{{ student.average }}</td>
-          <td>CA</td><td></td>
-          <td rowspan="2">Number passed</td><td rowspan="2"></td>
-        </tr>
-        <tr>
-          <td>CAA</td><td></td>
-        </tr>
-        <tr>
-          <td>Punishment (hours)</td><td></td>
-          <td>Dismissed</td><td></td>
-          <td>Grade</td><td>{{ student.grade | default('') }}</td>
-          <td>CNA</td><td></td>
-          <td>Success rate (%)</td><td>{{ data.success_rate | default('') }}</td>
-        </tr>
-        <tr>
-          <td colspan="4">Remarks on student performance</td>
-          <td colspan="2">Parent's/Guardian's<br>signature<br><br>________</td>
-          <td colspan="2">Class master<br>signature<br><br>________</td>
-          <td colspan="2">The principal</td>
-        </tr>
+        {% endfor %}
       </tbody>
     </table>
 
+    <table class="summary-table">
+      <tr>
+        <td><strong>Total Score</strong></td>
+        <td>{{ student.total_score|default('') }}</td>
+        <td><strong>Class Average</strong></td>
+        <td>{{ data.class_average|default('') }}</td>
+      </tr>
+      <tr>
+        <td><strong>Term Average</strong></td>
+        <td>{{ student.average }}</td>
+        <td><strong>Grade</strong></td>
+        <td>{{ student.grade|default('') }}</td>
+      </tr>
+    </table>
+
+    <p style="margin-top: 40px;">Parent/Guardian Signature: ____________</p>
+    <p>Class Master Signature: ____________</p>
+    <p>Principal Signature: ____________</p>
+
   </div>
   {% endfor %}
-{% else %}
-  <p>No student data provided.</p>
-{% endif %}
 </body>
+
 </html>
