@@ -1,9 +1,11 @@
+import base64
 from fastapi import FastAPI, Request
 from fastapi.responses import StreamingResponse
 from jinja2 import Environment, FileSystemLoader
 from weasyprint import HTML
 from fastapi.middleware.cors import CORSMiddleware
 import io
+from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
@@ -21,7 +23,7 @@ env = Environment(loader=FileSystemLoader('templates'))
 def read_root():
     return {"status": "FastAPI is live", "endpoint": "/generate-report"}
 
-@app.post("/generate-report")
+""" @app.post("/generate-report")
 async def generate_report(request: Request):
     data = await request.json()
     template = env.get_template('report_card.html')
@@ -33,4 +35,18 @@ async def generate_report(request: Request):
         pdf_file,
         media_type="application/pdf",
         headers={"Content-Disposition": "inline; filename=class_report.pdf"}
-    )
+    ) """
+
+@app.post("/generate-report")
+async def generate_report(request: Request):
+    data = await request.json()
+    template = env.get_template('report_card.html')
+    html_content = template.render(data=data)
+    
+    pdf_buffer = io.BytesIO()
+    HTML(string=html_content).write_pdf(pdf_buffer)
+    pdf_buffer.seek(0)
+
+    base64_pdf = base64.b64encode(pdf_buffer.read()).decode('utf-8')
+
+    return JSONResponse(content={"pdf_base64": base64_pdf})
