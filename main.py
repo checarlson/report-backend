@@ -41,7 +41,9 @@ async def generate_report(request: Request):
 async def generate_report(request: Request):
     data = await request.json()
     template = env.get_template('report_card.html')
-    html_content = template.render(data=data)
+    # html_content = template.render(data=data)
+    html_content = template.render(students=data.get("students", []), data=data)
+
     
     pdf_buffer = io.BytesIO()
     HTML(string=html_content).write_pdf(pdf_buffer)
