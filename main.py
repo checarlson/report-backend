@@ -34,7 +34,7 @@ async def generate_report(request: Request):
     print("📥 Incoming JSON:")
     pprint.pprint(data)
 
-    students = data.get("students", [])[:3]  # Limit to first 1 students
+    students = data.get("students", []) #[:3] # Limit to first 1 students
 
     template = env.get_template("report_card.html")
     html_content = template.render(
