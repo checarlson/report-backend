@@ -9,7 +9,7 @@ app = FastAPI()
 
 env = Environment(loader=FileSystemLoader('templates'))
 
-@app.post("/generate-report")
+""" @app.post("/generate-report")
 async def generate_report(request: Request):
     data = await request.json()
 
@@ -24,6 +24,26 @@ async def generate_report(request: Request):
         pdf_file,
         media_type="application/pdf",
         headers={"Content-Disposition": "inline; filename=class_report.pdf"}
+    ) """
+
+
+@app.post("/generate-report")
+async def generate_report(request: Request):
+    data = await request.json()
+    template = env.get_template('report_card.html')
+    html_content = template.render(data=data)
+    pdf_file = io.BytesIO()
+    HTML(string=html_content).write_pdf(pdf_file)
+    pdf_file.seek(0)
+    headers = {
+        "Content-Disposition": "inline; filename=class_report.pdf",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Expose-Headers": "Content-Disposition"
+    }
+    return StreamingResponse(
+        pdf_file,
+        media_type="application/pdf",
+        headers=headers
     )
 
 def read_root():
