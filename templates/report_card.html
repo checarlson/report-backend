@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <title>Student Report</title>
   <style>
-    @page {
+    /* @page {
       size: A4;
-      margin: 2cm;
+      margin: 1cm;
     }
 
     body {
@@ -33,7 +33,6 @@
             text-align: left;
             font-size: 10px;
             font-style: italic;
-            /*background: #f3f3f3;*/
             text-decoration-color: #f3f3f3;
     }
 
@@ -91,6 +90,123 @@
 
     .summary-table td {
       white-space: nowrap;
+    } */
+
+    @page {
+      size: A4;
+      margin: 1cm; /* Keep margin reasonable */
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 11px; /* Slightly reduced base font size */
+      margin: 0;
+    }
+
+    .page {
+      page-break-after: always;
+    }
+
+    .header {
+      display: table;
+      width: 100%;
+      margin-bottom: 10px; /* Reduced margin */
+    }
+
+    .subject {
+            text-align: left;
+            font-size: 11px; /* Ensure consistency or slight reduction */
+        }
+
+    .subject-m {
+            text-align: left;
+            font-size: 9px; /* Further reduced for italic text */
+            font-style: italic;
+            /*background: #f3f3f3;*/
+            text-decoration-color: #f3f3f3;
+    }
+
+
+    .header-cell {
+      display: table-cell;
+      width: 33%;
+      vertical-align: top;
+      text-align: center;
+      font-size: 10px; /* Reduced font size for header text */
+    }
+
+    .title {
+      text-align: center;
+      font-size: 14px; /* Reduced title font size */
+      margin: 5px 0 5px; /* Reduced margins */
+    }
+
+    .form-container {
+      margin-top: 5px; /* Reduced margin */
+      display: flex; /* Use flexbox for better alignment of photo and table */
+      width: 100%;
+      align-items: flex-start; /* Align items to the top */
+    }
+
+    .photo-box {
+      width: 120px;
+      height: 140px;
+      border: 1px solid #000;
+      text-align: center;
+      vertical-align: middle; /* This will be ignored by flexbox for vertical alignment, use align-self */
+      display: flex; /* Use flexbox to center content vertically */
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0; /* Prevent it from shrinking */
+    }
+
+    .form-table {
+      flex-grow: 1; /* Allow table to take remaining space */
+      padding-left: 15px;
+      /* The table inside this div will naturally handle its layout */
+    }
+
+    /* Styles for the table inside .form-table */
+    .form-table table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0; /* Remove top margin as it's within flex item */
+      font-size: 11px; /* Adjust font size for this table */
+    }
+
+    .form-table th, .form-table td {
+      border: 1px solid black;
+      padding: 3px; /* Reduced padding */
+      text-align: center;
+    }
+
+
+    table { /* Main content table */
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 11px; /* Adjusted font size for main table */
+    }
+
+    th {
+            text-align: center;
+            background: #f3f3f3;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 3px; /* Reduced padding */
+      text-align: center;
+    }
+
+    .summary-table {
+      margin-top: 10px;
+      font-size: 11px; /* Adjusted font size for summary table */
+    }
+
+    .summary-table td {
+      white-space: nowrap;
+      padding: 3px; /* Reduced padding */
     }
   </style>
 </head>
@@ -144,7 +260,7 @@
       </div>
     </div> -->
 
-     <div class="form-container">
+     <!-- <div class="form-container">
       <div class="photo-box">
             Student’s<br>photograph
         </div>
@@ -156,8 +272,43 @@
             <tr>
                 <td style="width: 40%;"><div class="subject">
                     Date and place of birth:
-                    </div><!-- <span style="position: absolute; right:
-                    40px;">Gender: </span> -->
+                    </div>
+                <td style="width: 35%; padding-left: 20px;">
+                    Gender:</td>
+                </td>
+                <td><div class="subject">Class enrolment : {len(data.get("students", []))}</div></td>
+            </tr>
+            <tr>
+                <td style="width: 40%;"><div class="subject">Unique Identification number:</div></td>
+                <td style="width: 35%; padding-left: 20px;">
+                    Repeater : Yes/No
+                </td>
+                <td style="width: 25%;">Number of subjects : {{ student.subjects|length }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" rowspan="3"><div class="subject">
+                    Parent’s/Guardian’s name and contact:</div><br>
+                </td>
+                <td><div class="subject">Number subject passed :</div></td>
+            </tr>
+            <tr>
+                <td class="class-master-cell"><div class="subject">Class master:</div></td>
+            </tr>
+        </table>
+    </div> -->
+
+    <div class="form-container">
+    <div class="photo-box">
+        Student’s<br>photograph
+    </div>
+    <div class="form-table"> <table class="form-table-inner"> <tr>
+                <td colspan="2"><strong><div class="subject">Name of Student : {{ student.name }}</div></strong></td>
+                <td><strong><div class="subject">Class : {{ data.class }}</div></strong></td>
+            </tr>
+            <tr>
+                <td style="width: 40%;"><div class="subject">
+                    Date and place of birth:
+                    </div>
                 <td style="width: 35%; padding-left: 20px;">
                     Gender:</td>
                 </td>
@@ -181,6 +332,7 @@
             </tr>
         </table>
     </div>
+</div>
 
     <table>
       <thead>
