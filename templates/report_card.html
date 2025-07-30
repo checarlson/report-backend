@@ -130,24 +130,28 @@
       <thead>
         <tr>
           <th>Subject</th>
-          <th>Eval 1</th>
-          <th>Eval 2</th>
-          <th>Average</th>
+          <th>Competencies</th>
+          <th>Mark/20</th>
+          <th>AV/20</th>
           <th>Coef</th>
-          <th>Weighted</th>
+          <th>AVxCoef</th>
           <th>Grade</th>
         </tr>
       </thead>
       <tbody>
         {% for subject in student.subjects %}
         <tr>
-          <td>{{ subject.name }}</td>
+          <td rowspan="2">{{ subject.name }}</td>
+          <td>{{ subject.comp1 }}</td>
           <td>{{ subject.eval1 }}</td>
+          <td rowspan="2">{{ subject.average }}</td>
+          <td rowspan="2">{{ subject.coef }}</td>
+          <td rowspan="2">{{ subject.weighted }}</td>
+          <td rowspan="2">{{ subject.grade }}</td>
+        </tr>
+        <tr>
+          <td>{{ subject.comp2 }}</td>
           <td>{{ subject.eval2 }}</td>
-          <td>{{ subject.average }}</td>
-          <td>{{ subject.coef }}</td>
-          <td>{{ subject.weighted }}</td>
-          <td>{{ subject.grade }}</td>
         </tr>
         {% endfor %}
       </tbody>
