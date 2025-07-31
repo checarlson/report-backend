@@ -351,7 +351,7 @@
                 <td colspan="2" rowspan="4"><div class="subject">
                     Parent’s/Guardian’s name and contact:</div><br>
                 </td>
-                <td><div class="subject">Number subject passed : {{ pass_count }}</div></td>
+                <td><div class="subject">Number subject passed : {{ data.stud_passed }}</div></td>
 
             </tr>
             <td><div class="subject">Position : <strong>{{ student.rank }}</strong></div></td>
@@ -400,7 +400,7 @@
       </tbody><tr>
   <td colspan="4"><strong>TOTAL</strong></td> <!-- Up to AV/20 -->
   <td>{{ student.total_coef|default('') }}</td>
-  <td>{{ student.total_weighted|default('') }}</td>
+  <td>{{ student.total_coefxAv|default('') }}</td>
   <td colspan="3"><strong>STUDENT AVERAGE: {{ student.average }}</strong></td>
 </tr>
 
@@ -448,7 +448,7 @@
                 <td class="tg-0pky">Conduct warning</td>
                 <td class="tg-0pky"></td>
                 <td class="tg-0pky">Total score</td>
-                <td class="tg-0pky"></td>
+                <td class="tg-0pky">{{student.total_coefxAv}}</td>
                 <td class="tg-0pky" colspan="2">Remark</td>
                 <td class="tg-0pky">Class average</td>
                 <td class="tg-0pky">{{ data.class_average|default('') }}</td>
@@ -458,8 +458,8 @@
                 <td class="tg-0pky" rowspan="2"></td>
                 <td class="tg-0pky" rowspan="2">Reprimand</td>
                 <td class="tg-0pky" rowspan="2"></td>
-                <td class="tg-0pky" rowspan="2">coef</td>
-                <td class="tg-0pky" rowspan="2"></td>
+                <td class="tg-0pky" rowspan="2">Coef</td>
+                <td class="tg-0pky" rowspan="2">{{ student.total_coef }}</td>
                 <td class="tg-0pky">CVWA</td>
                 <td class="tg-0pky"></td>
                 <td class="tg-0pky" rowspan="2">[min-max]</td>
@@ -479,7 +479,7 @@
                 <td class="tg-0pky">CA</td>
                 <td class="tg-0pky"></td>
                 <td class="tg-0pky" rowspan="2">Number passed</td>
-                <td class="tg-0pky" rowspan="2"></td>
+                <td class="tg-0pky" rowspan="2">{{data.stud_passed}}</td>
             </tr>
             <tr>
                 <td class="tg-0pky">CAA</td>
@@ -495,7 +495,7 @@
                 <td class="tg-0pky">CNA</td>
                 <td class="tg-0pky"></td>
                 <td class="tg-0pky">Sucess rate(%)</td>
-                <td class="tg-0pky"></td>
+                <td class="tg-0pky">{{(data.stud_passed/data.class_size)*100}}%</td>
             </tr>
             <tr>
                 <td class="tg-c3ow" colspan="4">Remarks on student
