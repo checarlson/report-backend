@@ -232,7 +232,7 @@
           School Logo
         </div> -->
         <div class="center-logo">
-            <img src="data:image/png;base64,{{ logo }}" alt="logo" width="120" />
+            <img src="data:image/png;base64,{{ data.logo }}" alt="logo" width="120" />
         </div>
       </div>
       <div class="header-cell">
@@ -325,7 +325,7 @@
                 <td style="width: 35%; padding-left: 20px;">
                     Gender:</td>
                 </td>
-                <td><div class="subject">Class enrolment : {{ data.students|length }}</div></td>
+                <td><div class="subject">Class enrolment : {{ data.class_size }}</div></td>
             </tr>
             <tr>
                 <td style="width: 40%;"><div class="subject">Unique Identification number:</div></td>
