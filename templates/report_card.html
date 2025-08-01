@@ -154,7 +154,7 @@
   {% for student in students %}
   <div class="page">
 
-    <div class="header">
+   <!--  <div class="header">
       <div class="header-cell">
         REPUBLIC OF CAMEROON<br>
         <em>Peace – Work – Fatherland</em><br>
@@ -170,7 +170,7 @@
             <img src="data:image/png;base64,{{ data.logo }}" alt="logo" class="logo-image" />
         </div>
 
-      </div> -->
+      </div> 
 
       <div class="header-cell">
         <div style="display: flex; align-items: center; justify-content: center; height: 150px;">
@@ -187,7 +187,36 @@
         ***************<br>
         LYCÉE DE………...
       </div>
-    </div>
+    </div> -->
+
+    <table style="width: 100%; margin-bottom: 10px;">
+  <tr>
+    <td style="width: 33%; text-align: center; font-size: 10px;">
+      REPUBLIC OF CAMEROON<br>
+      <em>Peace – Work – Fatherland</em><br>
+      ***************<br>
+      MINISTRY OF SECONDARY EDUCATION<br>
+      ***************<br>
+      REGIONAL DELEGATION OF WEST<br>
+      ***************<br>
+      HIGH SCHOOL WEST
+    </td>
+    <td style="width: 33%; text-align: center;">
+      <img src="data:image/png;base64,{{ data.logo }}" alt="logo" style="max-width: 120px; max-height: 120px;" />
+    </td>
+    <td style="width: 33%; text-align: center; font-size: 10px;">
+      RÉPUBLIQUE DU CAMEROUN<br>
+      <em>Paix – Travail – Patrie</em><br>
+      ***************<br>
+      MINISTÈRE DES ENSEIGNEMENTS SECONDAIRES<br>
+      ***************<br>
+      DÉLÉGATION RÉGIONALE DE L'OUEST<br>
+      ***************<br>
+      LYCÉE DE L'OUEST
+    </td>
+  </tr>
+</table>
+
 
     <div class="title">
       <h3>{{ data.term|default('First Term') }} Progress Record</h3>
