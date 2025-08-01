@@ -4,93 +4,6 @@
   <meta charset="UTF-8">
   <title>Student Report</title>
   <style>
-    /* @page {
-      size: A4;
-      margin: 1cm;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      margin: 0;
-    }
-
-    .page {
-      page-break-after: always;
-    }
-
-    .header {
-      display: table;
-      width: 100%;
-      margin-bottom: 20px;
-    }
-
-    .subject {
-            text-align: left;
-        }
-
-    .subject-m {
-            text-align: left;
-            font-size: 10px;
-            font-style: italic;
-            text-decoration-color: #f3f3f3;
-    }
-
-
-    .header-cell {
-      display: table-cell;
-      width: 33%;
-      vertical-align: top;
-      text-align: center;
-    }
-
-    .title {
-      text-align: center;
-      font-size: 16px;
-      margin: 10px 0 5px;
-    }
-
-    .form-container {
-      margin-top: 10px;
-      display: table;
-      width: 100%;
-      table-layout: fixed;
-    }
-
-    .photo-box {
-      display: table-cell;
-      width: 120px;
-      height: 140px;
-      border: 1px solid #000;
-      text-align: center;
-      vertical-align: middle;
-    }
-
-    .form-table {
-      display: table-cell;
-      padding-left: 15px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-
-    th {
-            text-align: center;
-            background: #f3f3f3;
-    }
-
-    th, td {
-      border: 1px solid black;
-      padding: 4px;
-      text-align: center;
-    }
-
-    .summary-table td {
-      white-space: nowrap;
-    } */
 
     @page {
       size: A4;
@@ -117,7 +30,13 @@
             text-align: left;
             font-size: 11px; /* Ensure consistency or slight reduction */
         }
+
     .tg-9wq8{
+            font-size: 11px; /* Ensure consistency or slight reduction */
+            text-align: center; 
+    }
+
+    .tg-0pky{
             font-size: 11px; /* Ensure consistency or slight reduction */
             text-align: left; 
     }
@@ -246,12 +165,18 @@
         ***************<br>
         HIGH SCHOOL
       </div>
-      <div class="header-cell">
+      <!-- <div class="header-cell">
         <div class="center-logo">
             <img src="data:image/png;base64,{{ data.logo }}" alt="logo" class="logo-image" />
         </div>
 
-      </div>
+      </div> -->
+
+      <div class="header-cell">
+        <div style="display: flex; align-items: center; justify-content: center; height: 150px;">
+            <img src="data:image/png;base64,{{ data.logo }}" alt="logo" style="max-width: 120px; max-height: 120px;" />
+        </div>
+        </div>
       <div class="header-cell">
         RÉPUBLIQUE DU CAMEROUN<br>
         <em>Paix – Travail – Patrie</em><br>
@@ -275,56 +200,6 @@
         {% set pass_count = pass_count + 1 %}
       {% endif %}
     {% endfor %}
-
-
-    <!-- <div class="form-container">
-      <div class="photo-box">Student’s<br>photograph</div>
-      <div class="form-table">
-        <p><strong>Name:</strong> {{ student.name }}</p>
-        <p><strong>Class:</strong> {{ data.class }}</p>
-        <p><strong>Gender:</strong> .......</p>
-        <p><strong>Number of Subjects:</strong> {{ student.subjects|length }}</p>
-        <p><strong>Term Average:</strong> {{ student.average }}</p>
-        <p><strong>Remark:</strong> {{ student.remark }}</p>
-      </div>
-    </div> -->
-
-     <!-- <div class="form-container">
-      <div class="photo-box">
-            Student’s<br>photograph
-        </div>
-        <table class="form-table">
-            <tr>
-                <td colspan="2"><strong><div class="subject">Name of Student : {{ student.name }}</div></strong></td>
-                <td><strong><div class="subject">Class : {{ data.class }}</div></strong></td>
-            </tr>
-            <tr>
-                <td style="width: 40%;"><div class="subject">
-                    Date and place of birth:
-                    </div>
-                <td style="width: 35%; padding-left: 20px;">
-                    Gender:</td>
-                </td>
-                <td><div class="subject">Class enrolment : {len(data.get("students", []))}</div></td>
-            </tr>
-            <tr>
-                <td style="width: 40%;"><div class="subject">Unique Identification number:</div></td>
-                <td style="width: 35%; padding-left: 20px;">
-                    Repeater : Yes/No
-                </td>
-                <td style="width: 25%;">Number of subjects : {{ student.subjects|length }}</td>
-            </tr>
-            <tr>
-                <td colspan="2" rowspan="3"><div class="subject">
-                    Parent’s/Guardian’s name and contact:</div><br>
-                </td>
-                <td><div class="subject">Number subject passed :</div></td>
-            </tr>
-            <tr>
-                <td class="class-master-cell"><div class="subject">Class master:</div></td>
-            </tr>
-        </table>
-    </div> -->
 
     <div class="form-container">
     <div class="photo-box">
@@ -409,21 +284,6 @@
 </tr>
 
     </table>
-
-    <!-- <table class="summary-table">
-      <tr>
-        <td><strong>Total Score</strong></td>
-        <td>{{ student.total_score|default('') }}</td>
-        <td><strong>Class Average</strong></td>
-        <td>{{ data.class_average|default('') }}</td>
-      </tr>
-      <tr>
-        <td><strong>Term Average</strong></td>
-        <td>{{ student.average }}</td>
-        <td><strong>Grade</strong></td>
-        <td>{{ student.grade|default('') }}</td>
-      </tr>
-    </table> -->
 
     <table class="summary-table">
         <colgroup>
