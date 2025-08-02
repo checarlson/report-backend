@@ -367,10 +367,11 @@
         
         {% endfor %}
       </tbody><tr>
-  <td style="align-items: start;" colspan="4"><strong>TOTAL</strong></td> <!-- Up to AV/20 -->
+  <td style="text-align: right;" colspan="4"><strong>TOTAL</strong></td>
+<!-- Up to AV/20 -->
   <td>{{ student.total_coef|default('') }}</td>
   <td>{{ student.total_coefxAv|default('') }}</td>
-  <td style="align-items: end;" colspan="3"><strong>STUDENT AVERAGE: {{ student.average }}</strong></td>
+  <td style="text-align: left;" colspan="3"><strong>STUDENT AVERAGE: {{ student.average }}</strong></td>
 </tr>
 
     </table>
@@ -417,7 +418,7 @@
                 <td class="tg-0pky">CVWA</td>
                 <td class="tg-0pky"></td>
                 <td class="tg-0pky" rowspan="2">[min-max]</td>
-                <td class="tg-0pky" rowspan="2">{{data.first_average}}<br>{{data.last_average}}</td>
+                <td class="tg-0pky" rowspan="2">{{data.last_average}} -<br>{{data.first_average}}</td>
             </tr>
             <tr>
                 <td class="tg-0pky">CWA</td>
@@ -453,15 +454,16 @@
             </tr>
             <tr>
                 <td class="tg-c3ow" colspan="4">Remarks on student
-                performance</td>
+                performance<br><br>      <br><br><br></td>
                 <td class="tg-c3ow" colspan="2">Parent's/guardian's
                 <br>signature<br><br>        <br><br></td>
                 <td class="tg-c3ow" colspan="2">Class master
                 <br>signature<br><br>       <br><br></td>
-                <td class="tg-c3ow" colspan="2">The principal</td>
+                <td class="tg-c3ow" colspan="2">The principal<br><br>      <br><br><br></td>
             </tr>
         </tbody>
     </table>
+    <p style="text-align: right;"><br><br>{{data.date}}</p>
 
     <!-- <p style="margin-top: 40px;">Parent/Guardian Signature: ____________</p>
     <p>Class Master Signature: ____________</p>
