@@ -1,412 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Student Report</title>
-  <style>
-
-    @page {
-      size: A4;
-      margin: 1cm; /* Keep margin reasonable */
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      font-size: 11px; /* Slightly reduced base font size */
-      margin: 0;
-    }
-
-    .page {
-      page-break-after: always;
-    }
-
-    .header {
-      display: table;
-      width: 100%;
-      margin-bottom: 10px; /* Reduced margin */
-    }
-
-    .subject {
-            text-align: left;
-            font-size: 11px; /* Ensure consistency or slight reduction */
-        }
-
-    .tg-9wq8{
-            font-size: 11px; /* Ensure consistency or slight reduction */
-            text-align: center; 
-    }
-
-    .tg-0pky{
-            font-size: 11px; /* Ensure consistency or slight reduction */
-            text-align: left; 
-    }
-
-    .subject-m {
-            text-align: left;
-            font-size: 9px; /* Further reduced for italic text */
-            font-style: italic;
-            color: #808080; /* Changed to color for better visibility */
-            /*background: #f3f3f3;*/
-            /* text-decoration-color: #f3f3f3; */
-    }
-
-
-    /* .header-cell {
-      display: table-cell;
-      width: 33%;
-      vertical-align: top;
-      text-align: center;
-      font-size: 10px; /* Reduced font size for header text */
-        /* }  */
-    
-    .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 5px;
-        margin-bottom: 10px;
-        gap: 10px;
-    }
-
-    .header-left,
-    .header-right {
-        width: 32%;
-        font-size: 10px;
-        text-align: center;
-        line-height: 1.4;
-    }
-
-    .header-logo {
-        width: 120px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .logo-image {
-    max-width: 100px;
-    max-height: 100px;
-    object-fit: contain;
-    }
-
-
-    .title {
-      text-align: center;
-      font-size: 14px; /* Reduced title font size */
-      margin: 5px 0 5px; /* Reduced margins */
-    }
-
-    .form-container {
-      margin-top: 5px; /* Reduced margin */
-      display: flex; /* Use flexbox for better alignment of photo and table */
-      width: 100%;
-      align-items: flex-start; /* Align items to the top */
-    }
-
-    .photo-box {
-      width: 120px;
-      height: 140px;
-      border: 1px solid #000;
-      text-align: center;
-      vertical-align: middle; /* This will be ignored by flexbox for vertical alignment, use align-self */
-      display: flex; /* Use flexbox to center content vertically */
-      justify-content: center;
-      align-items: center;
-      flex-shrink: 0; /* Prevent it from shrinking */
-    }
-
-    .form-table {
-      flex-grow: 1; /* Allow table to take remaining space */
-      padding-left: 15px;
-      /* The table inside this div will naturally handle its layout */
-    }
-
-    /* Styles for the table inside .form-table */
-    .form-table table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 0; /* Remove top margin as it's within flex item */
-      font-size: 11px; /* Adjust font size for this table */
-    }
-
-    .form-table th, .form-table td {
-      border: 1px solid black;
-      padding: 3px; /* Reduced padding */
-      text-align: center;
-    }
-
-
-    table { /* Main content table */
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-      font-size: 11px; /* Adjusted font size for main table */
-    }
-
-    th {
-            text-align: center;
-            background: #f3f3f3;
-    }
-
-    th, td {
-      border: 1px solid black;
-      padding: 3px; /* Reduced padding */
-      text-align: center;
-    }
-
-    .summary-table {
-      margin-top: 10px;
-      font-size: 11px; /* Adjusted font size for summary table */
-    }
-
-    .summary-table td {
-      white-space: nowrap;
-      padding: 3px; /* Reduced padding */
-    }
-
-    .center-logo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 150px;
-    }
-
-    /* .logo-image {
-        align-items: center;
-        max-width: 120px;
-        max-height: 120px;
-        object-fit: contain;    
-    } */
-
-  </style>
-</head>
-
-<body>
-  {% for student in students %}
-  <div class="page">
-<div class="header">
-  <div class="header-left">
-    REPUBLIC OF CAMEROON<br>
-    <em>Peace – Work – Fatherland</em><br>
-    ***************<br>
-    MINISTRY OF SECONDARY EDUCATION<br>
-    ***************<br>
-    REGIONAL DELEGATION OF…<br>
-    ***************<br>
-    HIGH SCHOOL
-  </div>
-
-  <div class="header-logo">
-    <img src="data:image/png;base64,{{ data.logo }}" class="logo-image" alt="logo" />
-  </div>
-
-  <div class="header-right">
-    RÉPUBLIQUE DU CAMEROUN<br>
-    <em>Paix – Travail – Patrie</em><br>
-    ***************<br>
-    MINISTÈRE DES ENSEIGNEMENTS SECONDAIRES<br>
-    ***************<br>
-    DÉLÉGATION RÉGIONALE DE …<br>
-    ***************<br>
-    LYCÉE DE………...
-  </div>
-</div>
-
-
-
-    <div class="title">
-      <h3>{{ data.term|default('First Term') }} Progress Record</h3>
-      <p>School Year: ……/……..</p>
-    </div>
-
-    {% set pass_count = 0 %}
-    {% for subject in student.subjects %}
-      {% if subject.average >= 10 %}
-        {% set pass_count = pass_count + 1 %}
-      {% endif %}
-    {% endfor %}
-
-    <div class="form-container">
-    <div class="photo-box">
-        Student’s<br>photograph
-    </div>
-    <div class="form-table"> <table class="form-table-inner"> 
-            <tr>
-                <td colspan="2"><strong><div class="subject">Name of Student : {{ student.name }}</div></strong></td>
-                <td><strong><div class="subject">Class : {{ data.class }}</div></strong></td>
-            </tr>
-            <tr>
-                <td style="width: 40%;"><div class="subject">
-                    Date and place of birth:
-                    </div>
-                <td style="width: 35%; padding-left: 20px;">
-                    Gender:</td>
-                </td>
-                <td><div class="subject">Class enrolment : {{ data.class_size }}</div></td>
-            </tr>
-            <tr>
-                <td style="width: 40%;"><div class="subject">Unique Identification number:</div></td>
-                <td style="width: 35%; padding-left: 20px;">
-                    Repeater : Yes/No
-                </td>
-                <td style="width: 25%;"><div class="subject">Number of subjects : {{ student.subjects|length }}</div></td>
-            </tr>
-            <tr>
-                <td colspan="2" rowspan="4"><div class="subject">
-                    Parent’s/Guardian’s name and contact:</div><br>
-                </td>
-                <td><div class="subject">Number subject passed : {{ student.sub_passed }}</div></td>
-
-            </tr>
-            <td><div class="subject">Position : <strong>{{ student.rank }}</strong></div></td>
-            <!-- <td><div class="subject">Number subject passed : {{ pass_count }}</div></td>
-            <tr>
-
-                <td class="class-master-cell"><div class="subject">Class master:</div></td>
-            </tr>
-        </table>
-    </div>
-    </div>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Subject and Teacher’s Names</th>
-          <th>Competencies Evaluated</th>
-          <th>Mark/20</th>
-          <th>AV/20</th>
-          <th>Coef</th>
-          <th>AVxCoef</th>
-          <th>Grade</th>
-          <th>[Min - Max]</th>
-          <th>Remarks and Teacher’s signature</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for subject in student.subjects %}
-        <tr>
-          <td rowspan="2"><div class="subject">{{ subject.name }}</div><br><div class="subject-m">{{ subject.teacher }}</div></td>
-          <td><div class="subject">{{ subject.comp1 }}</div></td>
-          <td>{{ subject.eval1 }}</td>
-          <td rowspan="2">{{ subject.average }}</td>
-          <td rowspan="2">{{ subject.coef }}</td>
-          <td rowspan="2">{{ subject.weighted }}</td>
-          <td rowspan="2">{{ subject.grade }}</td>
-          <td rowspan="2">{{subject.minAv}} - <br> {{subject.maxAv}}</td>
-          <td rowspan="2"></td>
-        </tr>
-        <tr>
-          <td><div class="subject">{{ subject.comp2 }}</div></td>
-          <td>{{ subject.eval2 }}</td>
-        </tr>
-        
-        {% endfor %}
-      </tbody><tr>
-  <td style="text-align: right;" colspan="4"><strong>TOTAL</strong></td>
-<!-- Up to AV/20 
-  <td>{{ student.total_coef|default('') }}</td>
-  <td>{{ student.total_coefxAv|default('') }}</td>
-  <td style="text-align: left;" colspan="3"><strong>STUDENT AVERAGE: {{ student.average }}</strong></td>
-</tr>
-
-    </table>
-
-    <table class="summary-table">
-        <colgroup>
-            <col style="width: 100px;">
-            <col style="width: 25px;">
-            <col style="width: 90px;">
-            <col style="width: 25px;">
-            <col style="width: 85px;">
-            <col style="width: 25px;">
-            <col style="width: 60px;">
-            <col style="width: 15px;">
-            <col style="width: 90px;">
-            <col style="width: 25px;">
-        </colgroup>
-        <thead>
-            <tr>
-                <th class="tg-9wq8" colspan="4">Discipline</th>
-                <th class="tg-9wq8" colspan="4">Student performance</th>
-                <th class="tg-9wq8" colspan="2">Class profile</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="tg-0pky">Unjustified abs (h)</td>
-                <td class="tg-0pky"></td>
-                <td class="tg-0pky">Conduct warning</td>
-                <td class="tg-0pky"></td>
-                <td class="tg-0pky">Total score</td>
-                <td class="tg-0pky">{{student.total_coefxAv}}</td>
-                <td class="tg-0pky" colspan="2">Remark</td>
-                <td class="tg-0pky">Class average</td>
-                <td class="tg-0pky">{{ data.class_average|default('') }}</td>
-            </tr>
-            <tr>
-                <td class="tg-0pky" rowspan="2">Justified abs (h)</td>
-                <td class="tg-0pky" rowspan="2"></td>
-                <td class="tg-0pky" rowspan="2">Reprimand</td>
-                <td class="tg-0pky" rowspan="2"></td>
-                <td class="tg-0pky" rowspan="2">Coef</td>
-                <td class="tg-0pky" rowspan="2">{{ student.total_coef }}</td>
-                <td class="tg-0pky">CVWA</td>
-                <td class="tg-0pky"></td>
-                <td class="tg-0pky" rowspan="2">[min-max]</td>
-                <td class="tg-0pky" rowspan="2">{{data.last_average}} -<br>{{data.first_average}}</td>
-            </tr>
-            <tr>
-                <td class="tg-0pky">CWA</td>
-                <td class="tg-0pky"></td>
-            </tr>
-            <tr>
-                <td class="tg-0pky" rowspan="2">Late(nbr of times)</td>
-                <td class="tg-0pky" rowspan="2"></td>
-                <td class="tg-0pky" rowspan="2">Supension</td>
-                <td class="tg-0pky" rowspan="2"></td>
-                <td class="tg-0pky" rowspan="2">Term average</td>
-                <td class="tg-0pky" rowspan="2">{{ student.average }}</td>
-                <td class="tg-0pky">CA</td>
-                <td class="tg-0pky"></td>
-                <td class="tg-0pky" rowspan="2">Number passed</td>
-                <td class="tg-0pky" rowspan="2">{{data.stud_passed}}</td>
-            </tr>
-            <tr>
-                <td class="tg-0pky">CAA</td>
-                <td class="tg-0pky"></td>
-            </tr>
-            <tr>
-                <td class="tg-0pky">Punishmen(hour)</td>
-                <td class="tg-0pky"></td>
-                <td class="tg-0pky">Dismissed</td>
-                <td class="tg-0pky"></td>
-                <td class="tg-0pky">Grade</td>
-                <td class="tg-0pky"></td>
-                <td class="tg-0pky">CNA</td>
-                <td class="tg-0pky"></td>
-                <td class="tg-0pky">Sucess rate(%)</td>
-                <td class="tg-0pky">{{(data.stud_passed/data.class_size)*100}}%</td>
-            </tr>
-            <tr>
-                <td class="tg-c3ow" colspan="4">Remarks on student
-                performance<br><br>      <br><br><br></td>
-                <td class="tg-c3ow" colspan="2">Parent's/guardian's
-                <br>signature<br><br>        <br><br></td>
-                <td class="tg-c3ow" colspan="2">Class master
-                <br>signature<br><br>       <br><br></td>
-                <td class="tg-c3ow" colspan="2">The principal<br><br>      <br><br><br></td>
-            </tr>
-        </tbody>
-    </table>
-    <p style="text-align: right;"><br><br>{{data.date}}</p>
-
-  </div>
-  {% endfor %}
-</body>
-
-</html>
- -->
-
 
  <!DOCTYPE html>
 <html lang="en">
@@ -560,33 +151,46 @@
     </div>
 
     <!-- Student Info -->
-    <div class="form-container">
-      <div class="photo-box">Student Photo</div>
-      <div class="form-table">
-        <table>
-          <tr>
-            <td colspan="2">Name: {{ student.name }}</td>
-            <td>Class: {{ data.class }}</td>
-          </tr>
-          <tr>
-            <td>Date & Place of Birth:</td>
-            <td>Gender:</td>
-            <td>Enrolled: {{ data.class_size }}</td>
-          </tr>
-          <tr>
-            <td>Unique ID:</td>
-            <td>Repeater: Yes/No</td>
-            <td>Subjects: {{ student.subjects|length }}</td>
-          </tr>
-          <tr>
-            <td colspan="2">Parent/Guardian:</td>
-            <td>Passed: {{ student.sub_passed }}</td>
-          </tr>
-          <tr>
-            <td colspan="3">Position: {{ student.rank }}</td>
-          </tr>
+     <div class="form-container">
+    <div class="photo-box">
+        Student’s<br>photograph
+    </div>
+    <div class="form-table"> <table class="form-table-inner"> 
+            <tr>
+                <td colspan="2"><strong><div class="subject">Name of Student : {{ student.name }}</div></strong></td>
+                <td><strong><div class="subject">Class : {{ data.class }}</div></strong></td>
+            </tr>
+            <tr>
+                <td style="width: 40%;"><div class="subject">
+                    Date and place of birth:
+                    </div>
+                <td style="width: 35%; padding-left: 20px;">
+                    Gender:</td>
+                </td>
+                <td><div class="subject">Class enrolment : {{ data.class_size }}</div></td>
+            </tr>
+            <tr>
+                <td style="width: 40%;"><div class="subject">Unique Identification number:</div></td>
+                <td style="width: 35%; padding-left: 20px;">
+                    Repeater : Yes/No
+                </td>
+                <td style="width: 25%;"><div class="subject">Number of subjects : {{ student.subjects|length }}</div></td>
+            </tr>
+            <tr>
+                <td colspan="2" rowspan="4"><div class="subject">
+                    Parent’s/Guardian’s name and contact:</div><br>
+                </td>
+                <td><div class="subject">Number subject passed : {{ student.sub_passed }}</div></td>
+
+            </tr>
+            <td><div class="subject">Position : <strong>{{ student.rank }}</strong></div></td>
+            <!-- <td><div class="subject">Number subject passed : {{ pass_count }}</div></td> -->
+            <tr>
+
+                <td class="class-master-cell"><div class="subject">Class master:</div></td>
+            </tr>
         </table>
-      </div>
+    </div>
     </div>
 
     <!-- Subject Table -->
@@ -608,7 +212,7 @@
         {% for subject in student.subjects %}
         <tr>
           <td rowspan="2"><div class="subject">{{ subject.name }}</div><div class="subject-m">{{ subject.teacher }}</div></td>
-          <td>{{ subject.comp1 }}</td>
+          <td style="text-align: left;">{{ subject.comp1 }}</td>
           <td>{{ subject.eval1 }}</td>
           <td rowspan="2">{{ subject.average }}</td>
           <td rowspan="2">{{ subject.coef }}</td>
@@ -618,7 +222,7 @@
           <td rowspan="2"></td>
         </tr>
         <tr>
-          <td>{{ subject.comp2 }}</td>
+          <td style="text-align: left;">{{ subject.comp2 }}</td>
           <td>{{ subject.eval2 }}</td>
         </tr>
         {% endfor %}
@@ -632,28 +236,94 @@
     </table>
 
     <!-- Summary Table -->
-    <table class="summary-table">
-      <tr>
-        <td><strong>Total Score</strong></td>
-        <td>{{ student.total_coefxAv }}</td>
-        <td><strong>Class Average</strong></td>
-        <td>{{ data.class_average }}</td>
-      </tr>
-      <tr>
-        <td><strong>Term Average</strong></td>
-        <td>{{ "%.2f"|format(student.average) }}</td>
-        <td><strong>Grade</strong></td>
-        <td>{{ student.grade|default('') }}</td>
-      </tr>
-      <tr>
-        <td colspan="4" class="footer">
-          Date: {{ data.date }}<br>
-          Parent Signature: ____________<br>
-          Class Master Signature: ____________<br>
-          Principal Signature: ____________
-        </td>
-      </tr>
+   <table class="summary-table">
+        <colgroup>
+            <col style="width: 100px;">
+            <col style="width: 25px;">
+            <col style="width: 90px;">
+            <col style="width: 25px;">
+            <col style="width: 85px;">
+            <col style="width: 25px;">
+            <col style="width: 60px;">
+            <col style="width: 15px;">
+            <col style="width: 90px;">
+            <col style="width: 25px;">
+        </colgroup>
+        <thead>
+            <tr>
+                <th class="tg-9wq8" colspan="4">Discipline</th>
+                <th class="tg-9wq8" colspan="4">Student performance</th>
+                <th class="tg-9wq8" colspan="2">Class profile</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="tg-0pky">Unjustified abs (h)</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-0pky">Conduct warning</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-0pky">Total score</td>
+                <td class="tg-0pky">{{student.total_coefxAv}}</td>
+                <td class="tg-0pky" colspan="2">Remark</td>
+                <td class="tg-0pky">Class average</td>
+                <td class="tg-0pky">{{ data.class_average|default('') }}</td>
+            </tr>
+            <tr>
+                <td class="tg-0pky" rowspan="2">Justified abs (h)</td>
+                <td class="tg-0pky" rowspan="2"></td>
+                <td class="tg-0pky" rowspan="2">Reprimand</td>
+                <td class="tg-0pky" rowspan="2"></td>
+                <td class="tg-0pky" rowspan="2">Coef</td>
+                <td class="tg-0pky" rowspan="2">{{ student.total_coef }}</td>
+                <td class="tg-0pky">CVWA</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-0pky" rowspan="2">[min-max]</td>
+                <td class="tg-0pky" rowspan="2">{{data.last_average}} -<br>{{data.first_average}}</td>
+            </tr>
+            <tr>
+                <td class="tg-0pky">CWA</td>
+                <td class="tg-0pky"></td>
+            </tr>
+            <tr>
+                <td class="tg-0pky" rowspan="2">Late(nbr of times)</td>
+                <td class="tg-0pky" rowspan="2"></td>
+                <td class="tg-0pky" rowspan="2">Supension</td>
+                <td class="tg-0pky" rowspan="2"></td>
+                <td class="tg-0pky" rowspan="2">Term average</td>
+                <td class="tg-0pky" rowspan="2">{{ student.average }}</td>
+                <td class="tg-0pky">CA</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-0pky" rowspan="2">Number passed</td>
+                <td class="tg-0pky" rowspan="2">{{data.stud_passed}}</td>
+            </tr>
+            <tr>
+                <td class="tg-0pky">CAA</td>
+                <td class="tg-0pky"></td>
+            </tr>
+            <tr>
+                <td class="tg-0pky">Punishmen(hour)</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-0pky">Dismissed</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-0pky">Grade</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-0pky">CNA</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-0pky">Sucess rate(%)</td>
+                <td class="tg-0pky">{{(data.stud_passed/data.class_size)*100}}%</td>
+            </tr>
+            <tr>
+                <td class="tg-c3ow" colspan="4">Remarks on student
+                performance<br><br>      <br><br><br></td>
+                <td class="tg-c3ow" colspan="2">Parent's/guardian's
+                <br>signature<br><br>        <br><br></td>
+                <td class="tg-c3ow" colspan="2">Class master
+                <br>signature<br><br>       <br><br></td>
+                <td class="tg-c3ow" colspan="2">The principal<br><br>      <br><br><br></td>
+            </tr>
+        </tbody>
     </table>
+    <p style="text-align: right;"><br><br>{{data.date}}</p>
 
   </div>
   {% endfor %}
