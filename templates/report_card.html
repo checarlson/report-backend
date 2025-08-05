@@ -416,14 +416,17 @@
   <style>
     @page {
       size: A4;
-      margin: 0.5cm;
+      margin: 0.6cm;
     }
 
     body {
       font-family: Arial, sans-serif;
       font-size: 10px;
       margin: 0;
-      zoom: 90%; /* Adjust zoom for better fit */
+    }
+
+    .page {
+      page-break-after: always;
     }
 
     .header {
@@ -433,10 +436,17 @@
       margin-bottom: 5px;
     }
 
-    .header-section {
-      width: 33%;
+    .header-left,
+    .header-right {
+      width: 30%;
+      font-size: 10px;
       text-align: center;
-      line-height: 1.2;
+      line-height: 1.3;
+    }
+
+    .header-logo {
+      width: 100px;
+      text-align: center;
     }
 
     .header-logo img {
@@ -447,162 +457,205 @@
     .title {
       text-align: center;
       font-size: 12px;
-      margin: 2px 0;
+      margin: 5px 0;
     }
 
     .form-container {
       display: flex;
-      margin-top: 4px;
+      margin-top: 5px;
     }
 
     .photo-box {
-      width: 100px;
-      height: 120px;
-      border: 1px solid #000;
+      width: 90px;
+      height: 100px;
+      border: 1px solid black;
+      text-align: center;
+      font-size: 9px;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-right: 10px;
     }
 
     .form-table {
-      flex-grow: 1;
+      width: 100%;
+      padding-left: 10px;
     }
 
-    .form-table table,
+    .form-table td {
+      font-size: 9px;
+      padding: 2px 3px;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
+      margin-top: 5px;
     }
 
     th, td {
-      border: 1px solid #000;
-      padding: 2px;
+      border: 1px solid black;
+      padding: 3px;
       text-align: center;
-    }
-
-    th {
-      background: #f0f0f0;
-    }
-
-    .summary-table td {
-      white-space: nowrap;
-      padding: 2px;
-    }
-
-    .small-text {
       font-size: 9px;
     }
 
-    .section-label {
+    .summary-table td {
+      padding: 3px;
+      font-size: 9px;
+      white-space: nowrap;
+    }
+
+    .subject {
       text-align: left;
-      font-weight: bold;
+    }
+
+    .subject-m {
+      font-size: 8px;
+      text-align: left;
+      font-style: italic;
+      color: #666;
+    }
+
+    .footer {
+      margin-top: 8px;
+      font-size: 9px;
     }
   </style>
 </head>
 <body>
+  {% for student in students %}
+  <div class="page">
 
-<div class="header">
-  <div class="header-section">
-    REPUBLIC OF CAMEROON<br>
-    <em>Peace – Work – Fatherland</em><br>
-    MINISTRY OF SECONDARY EDUCATION<br>
-    REGIONAL DELEGATION OF…<br>
-    HIGH SCHOOL
-  </div>
-  <div class="header-logo">
-    <img src="data:image/png;base64,{{ data.logo }}" alt="logo">
-  </div>
-  <div class="header-section">
-    RÉPUBLIQUE DU CAMEROUN<br>
-    <em>Paix – Travail – Patrie</em><br>
-    MINISTÈRE DES ENSEIGNEMENTS SECONDAIRES<br>
-    DÉLÉGATION RÉGIONALE DE …<br>
-    LYCÉE DE………...
-  </div>
-</div>
+    <!-- Header -->
+    <div class="header">
+      <div class="header-left">
+        REPUBLIC OF CAMEROON<br>
+        <em>Peace – Work – Fatherland</em><br>
+        ***************<br>
+        MINISTRY OF SECONDARY EDUCATION<br>
+        ***************<br>
+        REGIONAL DELEGATION OF…<br>
+        ***************<br>
+        HIGH SCHOOL
+      </div>
+      <div class="header-logo">
+        <img src="data:image/png;base64,{{ data.logo }}" alt="logo">
+      </div>
+      <div class="header-right">
+        RÉPUBLIQUE DU CAMEROUN<br>
+        <em>Paix – Travail – Patrie</em><br>
+        ***************<br>
+        MINISTÈRE DES ENSEIGNEMENTS SECONDAIRES<br>
+        ***************<br>
+        DÉLÉGATION RÉGIONALE DE …<br>
+        ***************<br>
+        LYCÉE DE………...
+      </div>
+    </div>
 
-<div class="title">
-  <h4>{{ data.term }} Progress Record</h4>
-  <p>School Year: ……/……..</p>
-</div>
+    <!-- Title -->
+    <div class="title">
+      <strong>{{ data.term }} Progress Record</strong><br>
+      School Year: …… / ……..
+    </div>
 
-<div class="form-container">
-  <div class="photo-box">Photo</div>
-  <div class="form-table">
+    <!-- Student Info -->
+    <div class="form-container">
+      <div class="photo-box">Student Photo</div>
+      <div class="form-table">
+        <table>
+          <tr>
+            <td colspan="2">Name: {{ student.name }}</td>
+            <td>Class: {{ data.class }}</td>
+          </tr>
+          <tr>
+            <td>Date & Place of Birth:</td>
+            <td>Gender:</td>
+            <td>Enrolled: {{ data.class_size }}</td>
+          </tr>
+          <tr>
+            <td>Unique ID:</td>
+            <td>Repeater: Yes/No</td>
+            <td>Subjects: {{ student.subjects|length }}</td>
+          </tr>
+          <tr>
+            <td colspan="2">Parent/Guardian:</td>
+            <td>Passed: {{ student.sub_passed }}</td>
+          </tr>
+          <tr>
+            <td colspan="3">Position: {{ student.rank }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Subject Table -->
     <table>
-      <tr><td colspan="2">Name: {{ student.name }}</td><td>Class: {{ data.class }}</td></tr>
-      <tr><td>DOB:</td><td>Gender:</td><td>Enrolment: {{ data.class_size }}</td></tr>
-      <tr><td>ID No:</td><td>Repeater: Yes/No</td><td>Subjects: {{ student.subjects|length }}</td></tr>
-      <tr><td colspan="2">Guardian Contact:</td><td>Passed: {{ student.sub_passed }}</td></tr>
-      <tr><td colspan="3">Position: {{ student.rank }}</td></tr>
+      <thead>
+        <tr>
+          <th>Subject & Teacher</th>
+          <th>Competencies</th>
+          <th>Mark 1</th>
+          <th>Average</th>
+          <th>Coef</th>
+          <th>Weighted</th>
+          <th>Grade</th>
+          <th>[Min - Max]</th>
+          <th>Remarks</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for subject in student.subjects %}
+        <tr>
+          <td rowspan="2"><div class="subject">{{ subject.name }}</div><div class="subject-m">{{ subject.teacher }}</div></td>
+          <td>{{ subject.comp1 }}</td>
+          <td>{{ subject.eval1 }}</td>
+          <td rowspan="2">{{ subject.average }}</td>
+          <td rowspan="2">{{ subject.coef }}</td>
+          <td rowspan="2">{{ subject.weighted }}</td>
+          <td rowspan="2">{{ subject.grade }}</td>
+          <td rowspan="2">{{ subject.minAv }} - {{ subject.maxAv }}</td>
+          <td rowspan="2"></td>
+        </tr>
+        <tr>
+          <td>{{ subject.comp2 }}</td>
+          <td>{{ subject.eval2 }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td colspan="4" style="text-align: right;"><strong>Total</strong></td>
+          <td>{{ student.total_coef }}</td>
+          <td>{{ student.total_coefxAv }}</td>
+          <td colspan="3"><strong>Average: {{ "%.2f"|format(student.average) }}</strong></td>
+        </tr>
+      </tbody>
     </table>
+
+    <!-- Summary Table -->
+    <table class="summary-table">
+      <tr>
+        <td><strong>Total Score</strong></td>
+        <td>{{ student.total_coefxAv }}</td>
+        <td><strong>Class Average</strong></td>
+        <td>{{ data.class_average }}</td>
+      </tr>
+      <tr>
+        <td><strong>Term Average</strong></td>
+        <td>{{ "%.2f"|format(student.average) }}</td>
+        <td><strong>Grade</strong></td>
+        <td>{{ student.grade|default('') }}</td>
+      </tr>
+      <tr>
+        <td colspan="4" class="footer">
+          Date: {{ data.date }}<br>
+          Parent Signature: ____________<br>
+          Class Master Signature: ____________<br>
+          Principal Signature: ____________
+        </td>
+      </tr>
+    </table>
+
   </div>
-</div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Subject</th>
-      <th>Competency</th>
-      <th>Mark 1</th>
-      <th>Mark 2</th>
-      <th>Avg</th>
-      <th>Coef</th>
-      <th>Coef×Avg</th>
-      <th>Grade</th>
-      <th>Min–Max</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for subject in student.subjects %}
-    <tr>
-      <td>{{ subject.name }}<br><span class="small-text">{{ subject.teacher }}</span></td>
-      <td>{{ subject.comp1 }}<br>{{ subject.comp2 }}</td>
-      <td>{{ subject.eval1 }}</td>
-      <td>{{ subject.eval2 }}</td>
-      <td>{{ subject.average }}</td>
-      <td>{{ subject.coef }}</td>
-      <td>{{ subject.weighted }}</td>
-      <td>{{ subject.grade }}</td>
-      <td>{{ subject.minAv }}–{{ subject.maxAv }}</td>
-    </tr>
-    {% endfor %}
-    <tr>
-      <td class="section-label" colspan="4" style="text-align:right;">TOTAL</td>
-      <td>{{ student.average }}</td>
-      <td>{{ student.total_coef }}</td>
-      <td>{{ student.total_coefxAv }}</td>
-      <td colspan="2">STUDENT AVERAGE: {{ student.average }}</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="summary-table">
-  <tr>
-    <td>Unjustified Abs:</td><td></td>
-    <td>Total Score:</td><td>{{ student.total_coefxAv }}</td>
-    <td>Class Avg:</td><td>{{ data.class_average }}</td>
-  </tr>
-  <tr>
-    <td>Justified Abs:</td><td></td>
-    <td>Coef:</td><td>{{ student.total_coef }}</td>
-    <td>Min–Max:</td><td>{{ data.last_average }}–{{ data.first_average }}</td>
-  </tr>
-  <tr>
-    <td>Late (times):</td><td></td>
-    <td>Term Avg:</td><td>{{ student.average }}</td>
-    <td>Passed:</td><td>{{ data.stud_passed }}</td>
-  </tr>
-  <tr>
-    <td>Punishment (hrs):</td><td></td>
-    <td>Grade:</td><td></td>
-    <td>Success %:</td><td>{{ (data.stud_passed / data.class_size) * 100 }}%</td>
-  </tr>
-  <tr>
-    <td colspan="6" style="text-align: right;">{{ data.date }}</td>
-  </tr>
-</table>
-
+  {% endfor %}
 </body>
 </html>
