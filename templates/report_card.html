@@ -47,7 +47,7 @@
 
     .title {
       text-align: center;
-      font-size: 12px;
+      font-size: 11px;
       margin: 5px 0;
     }
 
@@ -125,9 +125,9 @@
         ***************<br>
         MINISTRY OF SECONDARY EDUCATION<br>
         ***************<br>
-        REGIONAL DELEGATION OF…<br>
+        REGIONAL DELEGATION OF WEST<br>
         ***************<br>
-        HIGH SCHOOL
+        SECONDARY HIGH SCHOOL OF BANGANGTE
       </div>
       <div class="header-logo">
         <img src="data:image/png;base64,{{ data.logo }}" alt="logo">
@@ -138,16 +138,16 @@
         ***************<br>
         MINISTÈRE DES ENSEIGNEMENTS SECONDAIRES<br>
         ***************<br>
-        DÉLÉGATION RÉGIONALE DE …<br>
+        DÉLÉGATION RÉGIONALE DE L'OUEST<br>
         ***************<br>
-        LYCÉE DE………...
+        LYCÉE DE SECONDAIRE DE BANGANGTE
       </div>
     </div>
 
     <!-- Title -->
     <div class="title">
       <strong>{{ data.term }} Progress Record</strong><br>
-      School Year: …… / ……..
+      School Year: 2025 / 2026
     </div>
 
     <!-- Student Info -->
@@ -276,13 +276,21 @@
                 <td class="tg-0pky" rowspan="2">Coef</td>
                 <td class="tg-0pky" rowspan="2">{{ student.total_coef }}</td>
                 <td class="tg-0pky">CVWA</td>
-                <td class="tg-0pky"></td>
+                <td class="tg-0pky" style="text-align: center; font-weight: bold;">
+                    {% if student.average >= 18 %}
+                      &#10003;
+                    {% endif %}
+                  </td>
                 <td class="tg-0pky" rowspan="2">[min-max]</td>
                 <td class="tg-0pky" rowspan="2">{{data.last_average}} -<br>{{data.first_average}}</td>
             </tr>
             <tr>
                 <td class="tg-0pky">CWA</td>
-                <td class="tg-0pky"></td>
+                <td class="tg-0pky" style="text-align: center; font-weight: bold;">
+                  {% if student.average >= 16 %}
+                    &#10003;
+                  {% endif %}
+                </td>
             </tr>
             <tr>
                 <td class="tg-0pky" rowspan="2">Late(nbr of times)</td>
@@ -292,13 +300,23 @@
                 <td class="tg-0pky" rowspan="2">Term average</td>
                 <td class="tg-0pky" rowspan="2">{{ student.average }}</td>
                 <td class="tg-0pky">CA</td>
-                <td class="tg-0pky"></td>
+                <td class="tg-0pky" style="text-align: center; font-weight: bold;">
+                    {% if student.average >= 12 %}
+                      &#10003;
+                    {% endif %}
+                  </td>
                 <td class="tg-0pky" rowspan="2">Number passed</td>
                 <td class="tg-0pky" rowspan="2">{{data.stud_passed}}</td>
             </tr>
             <tr>
                 <td class="tg-0pky">CAA</td>
-                <td class="tg-0pky"></td>
+                <td class="tg-0pky" style="text-align: center; font-weight: bold;">
+                    {% if student.average >= 10 %}
+                      &#10003;
+                    {% endif %}
+                  </td>
+                <td class="tg-0pky">Number failed</td>
+                <td class="tg-0pky">{{data.stud_failed}}</td>
             </tr>
             <tr>
                 <td class="tg-0pky">Punishmen(hour)</td>
@@ -306,20 +324,24 @@
                 <td class="tg-0pky">Dismissed</td>
                 <td class="tg-0pky"></td>
                 <td class="tg-0pky">Grade</td>
-                <td class="tg-0pky"></td>
+                <td class="tg-0pky">{{ student.grade }}</td>
                 <td class="tg-0pky">CNA</td>
-                <td class="tg-0pky"></td>
+                <td class="tg-0pky" style="text-align: center; font-weight: bold;">
+                  {% if student.average < 10 %}
+                    &#10003;
+                  {% endif %}
+                </td>
                 <td class="tg-0pky">Sucess rate(%)</td>
                 <td class="tg-0pky">{{(data.stud_passed/data.class_size)*100}}%</td>
             </tr>
             <tr>
                 <td class="tg-c3ow" colspan="4">Remarks on student
-                performance<br><br>   {{ student.remark }}   <br><br><br></td>
+                performance<br><br>   {{ student.remark }}   <br><br></td>
                 <td class="tg-c3ow" colspan="2">Parent's/guardian's
-                <br>signature<br><br>        <br><br></td>
+                <br>signature<br><br>        <br></td>
                 <td class="tg-c3ow" colspan="2">Class master
-                <br>signature<br><br>       <br><br></td>
-                <td class="tg-c3ow" colspan="2">The principal<br><br>      <br><br><br></td>
+                <br>signature<br><br>       <br></td>
+                <td class="tg-c3ow" colspan="2">The principal<br><br>      <br><br></td>
             </tr>
         </tbody>
     </table>
