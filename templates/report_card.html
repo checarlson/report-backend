@@ -291,7 +291,7 @@
             <tr>
                 <td class="tg-0pky">CWA</td>
                 <td class="tg-0pky1" style="text-align: center; font-weight: bold;">
-                  {% if student.average >= 16 %}
+                  {% if student.average >= 16 and student.average < 18 %}
                     &#10003;
                   {% endif %}
                 </td>
@@ -305,7 +305,7 @@
                 <td class="tg-0pky1" rowspan="2">{{ student.average }}</td>
                 <td class="tg-0pky">CA</td>
                 <td class="tg-0pky1" style="text-align: center; font-weight: bold;">
-                    {% if student.average >= 12 %}
+                    {% if student.average >= 12 and student.average < 16 %}
                       &#10003;
                     {% endif %}
                   </td>
@@ -315,7 +315,7 @@
             <tr>
                 <td class="tg-0pky">CAA</td>
                 <td class="tg-0pky1" style="text-align: center; font-weight: bold;">
-                    {% if student.average >= 10 %}
+                    {% if student.average >= 10 and student.average < 12 %}
                       &#10003;
                     {% endif %}
                   </td>
@@ -338,7 +338,7 @@
             </tr>
             <tr>
                 <td class="tg-c3ow" colspan="4">Remarks on student
-                performance<br><br>   <p style="font-weight: bold; font-size: 10px;">{{ student.remark }}</p>   <br><br></td>
+                performance<br><br>   <p style="font-weight: bold; font-size: 9px;">{{ student.remark }}</p>   <br></td>
                 <td class="tg-c3ow" colspan="2">Parent's/guardian's
                 <br>signature<br><br>        <br></td>
                 <td class="tg-c3ow" colspan="2">Class master
