@@ -7,7 +7,7 @@
   <style>
     @page {
       size: A4;
-      margin: 1.0cm;
+      margin: 0.5cm;
     }
 
     body {
@@ -115,10 +115,16 @@
     .tg-0pky{
       text-align: left; 
     }
+
+    .scale-down {
+      transform: scale(0.75);
+      transform-origin: top left;
+    }
   </style>
 </head>
 <body>
   {% for student in students %}
+  <div class="scale-down">
   <div class="page">
 
     <!-- Header -->
@@ -351,5 +357,6 @@
 
   </div>
   {% endfor %}
+  </div>
 </body>
 </html>
