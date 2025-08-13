@@ -12,7 +12,7 @@
 
     body {
       font-family: Arial, sans-serif;
-      font-size: 11px;
+      font-size: 10px;
       margin: 0;
     }
 
@@ -29,7 +29,7 @@
 
     .header-left,
     .header-right {
-      width: 30%;
+      width: 50%; /* Adjust as needed */
       font-size: 10px;
       text-align: center;
       line-height: 1.3;
@@ -110,6 +110,10 @@
     .footer {
       margin-top: 8px;
       font-size: 9px;
+    }
+
+    .tg-0pky{
+      text-align: left; 
     }
   </style>
 </head>
@@ -259,34 +263,34 @@
         <tbody>
             <tr>
                 <td class="tg-0pky">Unjustified abs (h)</td>
-                <td class="tg-0pky"></td>
+                <td class="tg-0pky"1></td>
                 <td class="tg-0pky">Conduct warning</td>
-                <td class="tg-0pky"></td>
+                <td class="tg-0pky1"></td>
                 <td class="tg-0pky">Total score</td>
-                <td class="tg-0pky">{{student.total_coefxAv}}</td>
+                <td class="tg-0pky1">{{student.total_coefxAv}}</td>
                 <td class="tg-0pky" colspan="2">Remark</td>
                 <td class="tg-0pky">Class average</td>
-                <td class="tg-0pky">{{ data.class_average|default('') }}</td>
+                <td class="tg-0pky1">{{ data.class_average|default('') }}</td>
             </tr>
             <tr>
                 <td class="tg-0pky" rowspan="2">Justified abs (h)</td>
-                <td class="tg-0pky" rowspan="2"></td>
+                <td class="tg-0pky1" rowspan="2"></td>
                 <td class="tg-0pky" rowspan="2">Reprimand</td>
-                <td class="tg-0pky" rowspan="2"></td>
+                <td class="tg-0pky1" rowspan="2"></td>
                 <td class="tg-0pky" rowspan="2">Coef</td>
-                <td class="tg-0pky" rowspan="2">{{ student.total_coef }}</td>
+                <td class="tg-0pky1" rowspan="2">{{ student.total_coef }}</td>
                 <td class="tg-0pky">CVWA</td>
-                <td class="tg-0pky" style="text-align: center; font-weight: bold;">
+                <td class="tg-0pky1" style="text-align: center; font-weight: bold;">
                     {% if student.average >= 18 %}
                       &#10003;
                     {% endif %}
                   </td>
                 <td class="tg-0pky" rowspan="2">[min-max]</td>
-                <td class="tg-0pky" rowspan="2">{{data.last_average}} -<br>{{data.first_average}}</td>
+                <td class="tg-0pky1" rowspan="2">{{data.last_average}} -<br>{{data.first_average}}</td>
             </tr>
             <tr>
                 <td class="tg-0pky">CWA</td>
-                <td class="tg-0pky" style="text-align: center; font-weight: bold;">
+                <td class="tg-0pky1" style="text-align: center; font-weight: bold;">
                   {% if student.average >= 16 %}
                     &#10003;
                   {% endif %}
@@ -294,23 +298,23 @@
             </tr>
             <tr>
                 <td class="tg-0pky" rowspan="2">Late(nbr of times)</td>
-                <td class="tg-0pky" rowspan="2"></td>
+                <td class="tg-0pky1" rowspan="2"></td>
                 <td class="tg-0pky" rowspan="2">Supension</td>
-                <td class="tg-0pky" rowspan="2"></td>
+                <td class="tg-0pky1" rowspan="2"></td>
                 <td class="tg-0pky" rowspan="2">Term average</td>
-                <td class="tg-0pky" rowspan="2">{{ student.average }}</td>
+                <td class="tg-0pky1" rowspan="2">{{ student.average }}</td>
                 <td class="tg-0pky">CA</td>
-                <td class="tg-0pky" style="text-align: center; font-weight: bold;">
+                <td class="tg-0pky1" style="text-align: center; font-weight: bold;">
                     {% if student.average >= 12 %}
                       &#10003;
                     {% endif %}
                   </td>
                 <td class="tg-0pky" rowspan="2">Number passed</td>
-                <td class="tg-0pky" rowspan="2">{{data.stud_passed}}</td>
+                <td class="tg-0pky1" rowspan="2">{{data.stud_passed}}</td>
             </tr>
             <tr>
                 <td class="tg-0pky">CAA</td>
-                <td class="tg-0pky" style="text-align: center; font-weight: bold;">
+                <td class="tg-0pky1" style="text-align: center; font-weight: bold;">
                     {% if student.average >= 10 %}
                       &#10003;
                     {% endif %}
@@ -318,23 +322,23 @@
             </tr>
             <tr>
                 <td class="tg-0pky">Punishmen(hour)</td>
-                <td class="tg-0pky"></td>
+                <td class="tg-0pky1"></td>
                 <td class="tg-0pky">Dismissed</td>
-                <td class="tg-0pky"></td>
+                <td class="tg-0pky1"></td>
                 <td class="tg-0pky">Grade</td>
-                <td class="tg-0pky">{{ student.grade }}</td>
+                <td class="tg-0pky1">{{ student.grade }}</td>
                 <td class="tg-0pky">CNA</td>
-                <td class="tg-0pky" style="text-align: center; font-weight: bold;">
+                <td class="tg-0pky1" style="text-align: center; font-weight: bold;">
                   {% if student.average < 10 %}
                     &#10003;
                   {% endif %}
                 </td>
                 <td class="tg-0pky">Sucess rate(%)</td>
-                <td class="tg-0pky">{{(data.stud_passed/data.class_size)*100}}%</td>
+                <td class="tg-0pky1">{{(data.stud_passed/data.class_size)*100}}%</td>
             </tr>
             <tr>
                 <td class="tg-c3ow" colspan="4">Remarks on student
-                performance<br><br>   {{ student.remark }}   <br><br></td>
+                performance<br><br>   <p style="font-weight: bold; font-size: 10px;">{{ student.remark }}</p>   <br><br></td>
                 <td class="tg-c3ow" colspan="2">Parent's/guardian's
                 <br>signature<br><br>        <br></td>
                 <td class="tg-c3ow" colspan="2">Class master
