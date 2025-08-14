@@ -99,7 +99,7 @@ async def generate_report(request: Request):
                 size: A4;
                 margin: 1cm;
                 transform: scale({zoom});
-                transform-origin: top left right;
+                transform-origin: center; /* Adjust as needed */
             }}
             body {{
                 zoom: {zoom};
