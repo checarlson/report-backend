@@ -97,7 +97,7 @@ async def generate_report(request: Request):
         <style>
             @page {{
                 size: A4;
-                margin: 10mm;
+                margin: 0.5cm;
                 transform: scale({zoom});
                 transform-origin: top left;
             }}
