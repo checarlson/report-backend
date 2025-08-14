@@ -97,12 +97,15 @@ async def generate_report(request: Request):
         <style>
             @page {{
                 size: A4;
-                margin: 1cm;
-                transform: scale({zoom});
-                transform-origin: center; /* Adjust as needed */
+                margin: 1cm; /* Correctly sets the page margin */
             }}
             body {{
                 zoom: {zoom};
+                /*
+                  Setting transform-origin to 'top left' ensures the content
+                  scales inward from the margins, preserving the space.
+                */
+                transform-origin: top left;
             }}
         </style>
         """
