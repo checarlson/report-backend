@@ -169,7 +169,7 @@ async def generate_report(request: Request):
     html_content = template.render(students=students, data=data)
 
     # PDF scaling loop
-    zoom = 1.0
+    zoom = 0.8
     base64_pdf = None
     max_attempts = 10
     attempt = 0
@@ -182,7 +182,7 @@ async def generate_report(request: Request):
         <style>
             @page {{
                 size: A4;
-                margin: 0.5cm; /* ✅ consistent margins */
+                margin: 1cm; /* ✅ consistent margins */
             }}
             body {{
                 zoom: {zoom};
