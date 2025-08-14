@@ -97,7 +97,7 @@ async def generate_report(request: Request):
 #         <style>
 #             @page {{
 #                 size: A4;
-#                 margin: 0.5cm;
+#                 margin: 1cm;
 #                 transform: scale({zoom});
 #                 transform-origin: top left;
 #             }}
@@ -206,7 +206,7 @@ async def generate_report(request: Request):
             break
 
         # Reduce zoom by 5% and retry
-        zoom -= 0.05
+        zoom -= 0.1
         if zoom <= 0.5:  # stop if zoom too small
             break
 
