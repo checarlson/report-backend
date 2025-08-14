@@ -52,83 +52,83 @@ async def generate_report(request: Request):
 
  """
 
-from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
-from fastapi.middleware.cors import CORSMiddleware
-from jinja2 import Environment, FileSystemLoader
-from weasyprint import HTML
-import io
-import base64
-import pprint
+# from fastapi import FastAPI, Request
+# from fastapi.responses import JSONResponse
+# from fastapi.middleware.cors import CORSMiddleware
+# from jinja2 import Environment, FileSystemLoader
+# from weasyprint import HTML
+# import io
+# import base64
+# import pprint
 
-app = FastAPI()
+# app = FastAPI()
 
-# ✅ Allow all origins for now — restrict later if needed
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# # ✅ Allow all origins for now — restrict later if needed
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["*"],
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
 
-# ✅ Load HTML template from /templates folder
-env = Environment(loader=FileSystemLoader("templates"))
+# # ✅ Load HTML template from /templates folder
+# env = Environment(loader=FileSystemLoader("templates"))
 
-@app.get("/")
-def read_root():
-    return {"status": "FastAPI is live", "endpoint": "/generate-report"}
+# @app.get("/")
+# def read_root():
+#     return {"status": "FastAPI is live", "endpoint": "/generate-report"}
 
 
-@app.post("/generate-report")
-async def generate_report(request: Request):
-    data = await request.json()
+# @app.post("/generate-report")
+# async def generate_report(request: Request):
+#     data = await request.json()
 
-    print("📥 Incoming JSON:")
-    pprint.pprint(data)
+#     print("📥 Incoming JSON:")
+#     pprint.pprint(data)
 
-    students = data.get("students", [])
-    zoom = 1.0
-    base64_pdf = None
+#     students = data.get("students", [])
+#     zoom = 1.0
+#     base64_pdf = None
 
-    while True:
-        # Inject CSS scale into HTML dynamically
-        scale_css = f"""
-        <style>
-            @page {{
-                size: A4;
-                margin: 1cm; /* Correctly sets the page margin */
-            }}
-            body {{
-                zoom: {zoom};
-                /*
-                  Setting transform-origin to 'top left' ensures the content
-                  scales inward from the margins, preserving the space.
-                */
-                transform-origin: top left;
-            }}
-        </style>
-        """
+#     while True:
+#         # Inject CSS scale into HTML dynamically
+#         scale_css = f"""
+#         <style>
+#             @page {{
+#                 size: A4;
+#                 margin: 1cm; /* Correctly sets the page margin */
+#             }}
+#             body {{
+#                 zoom: {zoom};
+#                 /*
+#                   Setting transform-origin to 'top left' ensures the content
+#                   scales inward from the margins, preserving the space.
+#                 */
+#                 transform-origin: top left;
+#             }}
+#         </style>
+#         """
 
-        template = env.get_template("report_card.html")
-        html_content = scale_css + template.render(students=students, data=data)
+#         template = env.get_template("report_card.html")
+#         html_content = scale_css + template.render(students=students, data=data)
 
-        pdf_buffer = io.BytesIO()
-        HTML(string=html_content).write_pdf(pdf_buffer)
-        pdf_buffer.seek(0)
+#         pdf_buffer = io.BytesIO()
+#         HTML(string=html_content).write_pdf(pdf_buffer)
+#         pdf_buffer.seek(0)
 
-        # Read PDF and check page count
-        from PyPDF2 import PdfReader
-        reader = PdfReader(pdf_buffer)
-        page_count = len(reader.pages)
+#         # Read PDF and check page count
+#         from PyPDF2 import PdfReader
+#         reader = PdfReader(pdf_buffer)
+#         page_count = len(reader.pages)
 
-        if page_count <= 1 or zoom <= 0.5:
-            base64_pdf = base64.b64encode(pdf_buffer.getvalue()).decode("utf-8")
-            break
+#         if page_count <= 1 or zoom <= 0.5:
+#             base64_pdf = base64.b64encode(pdf_buffer.getvalue()).decode("utf-8")
+#             break
 
-        zoom -= 0.05  # Reduce zoom by 5% and retry
+#         zoom -= 0.05  # Reduce zoom by 5% and retry
 
-    return JSONResponse(content={"pdf_base64": base64_pdf})
+#     return JSONResponse(content={"pdf_base64": base64_pdf})
 
 
 
@@ -216,3 +216,93 @@ async def generate_report(request: Request):
 #             break
 
 #     return JSONResponse(content={"pdf_base64": base64_pdf})
+
+
+
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
+from jinja2 import Environment, FileSystemLoader
+from weasyprint import HTML, CSS
+import io
+import base64
+import pprint
+from PyPDF2 import PdfReader
+
+app = FastAPI()
+
+# ✅ Allow all origins for now — restrict later if needed
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# ✅ Load HTML template from /templates folder
+env = Environment(loader=FileSystemLoader("templates"))
+
+@app.get("/")
+def read_root():
+    return {"status": "FastAPI is live", "endpoint": "/generate-report"}
+
+@app.post("/generate-report")
+async def generate_report(request: Request):
+    data = await request.json()
+
+    print("📥 Incoming JSON:")
+    pprint.pprint(data)
+
+    students = data.get("students", [])
+    zoom = 1.0  # Start with no zoom
+    base64_pdf = None
+
+    while True:
+        # Render the HTML template
+        template = env.get_template("report_card.html")
+        html_content = template.render(students=students, data=data)
+
+        # Generate a separate CSS with zoom for better control
+        zoom_css = CSS(string=f"""
+            body {{
+                zoom: {zoom};
+                transform-origin: top left;
+            }}
+        """)
+
+        pdf_buffer = io.BytesIO()
+
+        # Generate the PDF with explicit margins
+        HTML(string=html_content).write_pdf(
+            pdf_buffer,
+            stylesheets=[zoom_css], # Apply the zoom CSS
+            presentational_hints=True,
+            # ✅ SET MARGINS HERE!
+            # The order is: top, right, bottom, left
+            # This is a much more direct way to set margins
+            margin_top='1cm',
+            margin_right='1cm',
+            margin_bottom='1cm',
+            margin_left='1cm',
+        )
+        pdf_buffer.seek(0)
+
+        # Check page count
+        reader = PdfReader(pdf_buffer)
+        page_count = len(reader.pages)
+
+        # Success condition: if it fits on one page
+        if page_count <= 1:
+            base64_pdf = base64.b64encode(pdf_buffer.getvalue()).decode("utf-8")
+            break
+
+        # Failure condition: if zoom is too small
+        if zoom <= 0.5:
+            base64_pdf = base64.b64encode(pdf_buffer.getvalue()).decode("utf-8")
+            print("⚠️ Warning: Content still doesn't fit on one page even with maximum zoom out. PDF generated with multiple pages.")
+            break
+
+        zoom -= 0.05  # Reduce zoom by 5% and retry
+
+    return JSONResponse(content={"pdf_base64": base64_pdf})
