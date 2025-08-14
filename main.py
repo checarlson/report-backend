@@ -127,7 +127,6 @@ async def generate_report(request: Request):
 
 #     return JSONResponse(content={"pdf_base64": base64_pdf})
 
-
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -139,6 +138,7 @@ import pprint
 
 app = FastAPI()
 
+# ✅ Allow all origins for now (can be restricted later)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -147,6 +147,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# ✅ Load HTML templates
 env = Environment(loader=FileSystemLoader("templates"))
 
 @app.get("/")
@@ -157,43 +158,56 @@ def read_root():
 async def generate_report(request: Request):
     data = await request.json()
 
+    # Debug: log the incoming data
     print("📥 Incoming JSON:")
     pprint.pprint(data)
 
     students = data.get("students", [])
 
+    # Render template
     template = env.get_template("report_card.html")
     html_content = template.render(students=students, data=data)
 
-    # Inject scaling & margins CSS
-    scaling_css = """
-    <style>
-        @page {
-            size: A4;
-            margin: 1cm;
-        }
-        body {
-            transform-origin: top left;
-        }
-    </style>
-    <script>
-        // Measure content height and apply scaling
-        const pageHeight = 1122; // A4 in px at 96 DPI
-        const body = document.body;
-        const contentHeight = body.scrollHeight;
-        if (contentHeight > pageHeight) {
-            const scale = pageHeight / contentHeight;
-            body.style.transform = `scale(${scale})`;
-        }
-    </script>
-    """
+    # PDF scaling loop
+    zoom = 1.0
+    base64_pdf = None
+    max_attempts = 10
+    attempt = 0
 
-    # Combine HTML + scaling
-    final_html = html_content.replace("</head>", scaling_css + "</head>")
+    while attempt < max_attempts:
+        attempt += 1
 
-    pdf_buffer = io.BytesIO()
-    HTML(string=final_html).write_pdf(pdf_buffer)
-    pdf_buffer.seek(0)
+        # Inject CSS scale & margins
+        scale_css = f"""
+        <style>
+            @page {{
+                size: A4;
+                margin: 0.5cm; /* ✅ consistent margins */
+            }}
+            body {{
+                zoom: {zoom};
+                transform-origin: top left;
+            }}
+        </style>
+        """
 
-    base64_pdf = base64.b64encode(pdf_buffer.read()).decode("utf-8")
+        # Merge CSS into HTML
+        final_html = html_content.replace("</head>", scale_css + "</head>")
+
+        # Generate PDF
+        pdf_buffer = io.BytesIO()
+        HTML(string=final_html).write_pdf(pdf_buffer)
+        pdf_buffer.seek(0)
+        pdf_data = pdf_buffer.read()
+        base64_pdf = base64.b64encode(pdf_data).decode("utf-8")
+
+        # ✅ Stop when PDF fits one page (size < ~1MB)
+        if len(pdf_data) < 1_000_000:
+            break
+
+        # Reduce zoom by 5% and retry
+        zoom -= 0.05
+        if zoom <= 0.5:  # stop if zoom too small
+            break
+
     return JSONResponse(content={"pdf_base64": base64_pdf})
