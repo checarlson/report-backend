@@ -228,6 +228,7 @@ import io
 import base64
 import pprint
 from PyPDF2 import PdfReader
+from translations import translations  # import your dictionary
 
 app = FastAPI()
 
