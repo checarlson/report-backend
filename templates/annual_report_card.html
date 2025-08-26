@@ -201,9 +201,9 @@
       <thead>
         <tr>
           <th>{{ t.table_subjects }}</th>
-          <th>{{ t.1tt }}</th>
-          <th>{{ t.2tt }}</th>
-          <th>{{ t.3tt }}</th>
+          <th>{{ t.tt1 }}</th>
+          <th>{{ t.tt2 }}</th>
+          <th>{{ t.tt3 }}</th>
           <th>{{ t.av20 }}</th>
           <th>{{ t.coef }}</th>
           <th>{{ t.avxcoef }}</th>
@@ -230,7 +230,7 @@
     
         {% endfor %}
         <tr>
-          <td colspan="5" style="text-align: center; background-color: #DCDCDC;"><strong>{{ t.1t: student.t1Av | t.2t: student.t2Av | t.3t: student.t3Av  }}</strong></td>
+          <td colspan="5" style="text-align: center; background-color: #DCDCDC;"><strong>{{ t.t1: student.t1Av | t.t1: student.t2Av | t.t3: student.t3Av  }}</strong></td>
           <td>{{ student.total_coef }}</td>
           <td>{{ student.total_coefxAv }}</td>
           <td colspan="3"><strong>{{ t.a_avg }}: {{ "%.2f"|format(student.average) }}</strong></td>
