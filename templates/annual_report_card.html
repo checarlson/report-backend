@@ -196,8 +196,9 @@
       <thead>
         <tr>
           <th>{{ t.table_subjects }}</th>
-          <th>{{ t.competencies }}</th>
-          <th>{{ t.mark20 }}</th>
+          <th>1st TERM</th>
+          <th>2nd TERM</th>
+          <th>3rd TERM</th>
           <th>{{ t.av20 }}</th>
           <th>{{ t.coef }}</th>
           <th>{{ t.avxcoef }}</th>
@@ -209,20 +210,19 @@
       <tbody>
         {% for subject in student.subjects %}
         <tr>
-          <td rowspan="2"><div class="subject">{{ subject.name }}</div><div class="subject-m">{{ subject.teacher }}</div></td>
-          <td style="text-align: left;">{{ subject.comp1 }}</td>
-          <td>{{ subject.eval1 }}</td>
-          <td rowspan="2">{{ subject.average }}</td>
-          <td rowspan="2">{{ subject.coef }}</td>
-          <td rowspan="2">{{ subject.weighted }}</td>
-          <td rowspan="2">{{ subject.grade }}</td>
-          <td rowspan="2">{{ subject.minAv }} - {{ subject.maxAv }}</td>
-          <td rowspan="2">{{ subject.remark }}</td>
+          <td rowspan="1"><div class="subject">{{ subject.name }}</div><div class="subject-m">{{ subject.teacher }}</div></td>
+          <!-- <td style="text-align: left;">{{ subject.comp1 }}</td> -->
+          <td>{{ subject.avg1 }}</td>
+          <td>{{ subject.avg2 }}</td>
+          <td>{{ subject.avg3 }}</td>
+          <td rowspan="1">{{ subject.average }}</td>
+          <td rowspan="1">{{ subject.coef }}</td>
+          <td rowspan="1">{{ subject.weighted }}</td>
+          <td rowspan="1">{{ subject.grade }}</td>
+          <td rowspan="1">{{ subject.minAv }} - {{ subject.maxAv }}</td>
+          <td rowspan="1">{{ subject.remark }}</td>
         </tr>
-        <tr>
-          <td style="text-align: left;">{{ subject.comp2 }}</td>
-          <td>{{ subject.eval2 }}</td>
-        </tr>
+    
         {% endfor %}
         <tr>
           <td colspan="4" style="text-align: right;"><strong>{{ t.total }}</strong></td>

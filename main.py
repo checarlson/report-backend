@@ -318,11 +318,14 @@ async def generate_report(request: Request):
     lang = data.get("lang", "fr")  # default English if not provided
     t = translations.get(lang, translations["fr"])  # fallback
 
+    reportType = data.get("reportType", "third_term")  # default to "third_term"
+    template_file = "report_card.html" if reportType == "third_term" else "annual_report_card.html"
+
     zoom = 1.0
     base64_pdf = None
 
     while True:
-        template = env.get_template("report_card.html")
+        template = env.get_template(template_file)
         html_content = template.render(students=students, data=data, t=t)
 
         zoom_css = CSS(string=f"""

@@ -39,9 +39,17 @@ translations = {
         "grade": "Grade",
         "minmax": "[Min - Max]",
         "remarks": "Remarks and Teacher’s signature",
+        "1t": "1st Term",
+        "2t": "2nd Term",
+        "3t": "3rd Term",
+
+        "1tt": "1st Term",
+        "2tt": "2nd Term",
+        "3tt": "3rd Term",
 
         "total": "Total",
         "average": "Average",
+        "a_avg": "Annual Average",
 
         "discipline": "Discipline",
         "perf": "Student performance",
@@ -115,9 +123,17 @@ translations = {
         "grade": "Mention",
         "minmax": "[Min - Max]",
         "remarks": "Appréciations et signature de l’enseignant",
+        "1t": "1er Trimestre",
+        "2t": "2ème Trimestre",
+        "3t": "3ème Trimestre",
+
+        "1tt": "1er Trim",
+        "2tt": "2ème Trim",
+        "3tt": "3ème Trim",
 
         "total": "Total",
         "average": "Moyenne",
+        "a_avg": "Moyenne annuelle",
 
         "discipline": "Discipline",
         "perf": "Performance de l’élève",
