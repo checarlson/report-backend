@@ -90,6 +90,11 @@
       padding: 3px;
       text-align: center;
       font-size: 9px;
+/*      background-color: #808080;*/
+    }
+
+    th{
+      background-color: #666;
     }
 
     .summary-table td {
@@ -196,9 +201,9 @@
       <thead>
         <tr>
           <th>{{ t.table_subjects }}</th>
-          <th>1st TERM</th>
-          <th>2nd TERM</th>
-          <th>3rd TERM</th>
+          <th>{{ t.1tt }}</th>
+          <th>{{ t.2tt }}</th>
+          <th>{{ t.3tt }}</th>
           <th>{{ t.av20 }}</th>
           <th>{{ t.coef }}</th>
           <th>{{ t.avxcoef }}</th>
@@ -225,13 +230,22 @@
     
         {% endfor %}
         <tr>
-          <td colspan="4" style="text-align: right;"><strong>{{ t.total }}</strong></td>
+          <td colspan="5" style="text-align: center; background-color: #DCDCDC;"><strong>{{ t.1t: student.t1Av | t.2t: student.t2Av | t.3t: student.t3Av  }}</strong></td>
           <td>{{ student.total_coef }}</td>
           <td>{{ student.total_coefxAv }}</td>
-          <td colspan="3"><strong>{{ t.average }}: {{ "%.2f"|format(student.average) }}</strong></td>
+          <td colspan="3"><strong>{{ t.a_avg }}: {{ "%.2f"|format(student.average) }}</strong></td>
         </tr>
       </tbody>
     </table>
+
+    <!-- averages of varous terms -->
+    <!-- <table>
+      <thead>
+        <tr>
+          <td style="background-color: ;">1st Term:  ( ) | 2nd Term:  ( ) | 3rd Term:  ( )</td>
+        </tr>
+      </thead>
+    </table> -->
 
     <!-- Summary Table -->
     <table class="summary-table">
@@ -272,7 +286,7 @@
         </tr>
         <tr>
           <td class="tg-0pky" rowspan="2">{{ t.late }}</td>
-          <td rowspan="2"></td>
+          <td rowspan="2">200</td>
           <td class="tg-0pky" rowspan="2">{{ t.suspension }}</td>
           <td rowspan="2"></td>
           <td class="tg-0pky" rowspan="2">{{ t.term_avg }}</td>
