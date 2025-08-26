@@ -247,66 +247,6 @@ env = Environment(loader=FileSystemLoader("templates"))
 @app.get("/")
 def read_root():
     return {"status": "FastAPI is live", "endpoint": "/generate-report"}
-
-# @app.post("/generate-report")
-# async def generate_report(request: Request):
-#     data = await request.json()
-
-#     print("📥 Incoming JSON:")
-#     pprint.pprint(data)
-
-#     students = data.get("students", [])
-#     zoom = 1.0  # Start with no zoom
-#     base64_pdf = None
-
-#     while True:
-#         # Render the HTML template
-#         template = env.get_template("report_card.html")
-#         html_content = template.render(students=students, data=data)
-
-#         # Generate a separate CSS with zoom for better control
-#         zoom_css = CSS(string=f"""
-#             body {{
-#                 zoom: {zoom};
-#                 transform-origin: top left;
-#             }}
-#         """)
-
-#         pdf_buffer = io.BytesIO()
-
-#         # Generate the PDF with explicit margins
-#         HTML(string=html_content).write_pdf(
-#             pdf_buffer,
-#             stylesheets=[zoom_css], # Apply the zoom CSS
-#             presentational_hints=True,
-#             # ✅ SET MARGINS HERE!
-#             # The order is: top, right, bottom, left
-#             # This is a much more direct way to set margins
-#             margin_top='1cm',
-#             margin_right='1cm',
-#             margin_bottom='1cm',
-#             margin_left='1cm',
-#         )
-#         pdf_buffer.seek(0)
-
-#         # Check page count
-#         reader = PdfReader(pdf_buffer)
-#         page_count = len(reader.pages)
-
-#         # Success condition: if it fits on one page
-#         if page_count <= 1:
-#             base64_pdf = base64.b64encode(pdf_buffer.getvalue()).decode("utf-8")
-#             break
-
-#         # Failure condition: if zoom is too small
-#         if zoom <= 0.5:
-#             base64_pdf = base64.b64encode(pdf_buffer.getvalue()).decode("utf-8")
-#             print("⚠️ Warning: Content still doesn't fit on one page even with maximum zoom out. PDF generated with multiple pages.")
-#             break
-
-#         zoom -= 0.05  # Reduce zoom by 5% and retry
-
-#     return JSONResponse(content={"pdf_base64": base64_pdf})
 @app.post("/generate-report")
 async def generate_report(request: Request):
     data = await request.json()
