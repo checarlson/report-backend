@@ -230,7 +230,7 @@
     
         {% endfor %}
         <tr>
-          <td colspan="5" style="text-align: center; background-color: #DCDCDC;"><strong>{{ t.t1: student.t1Av | t.t1: student.t2Av | t.t3: student.t3Av  }}</strong></td>
+          <td colspan="5" style="text-align: center;"><strong>{{ t.t1: student.t1Av | t.t1: student.t2Av | t.t3: student.t3Av  }}</strong></td>
           <td>{{ student.total_coef }}</td>
           <td>{{ student.total_coefxAv }}</td>
           <td colspan="3"><strong>{{ t.a_avg }}: {{ "%.2f"|format(student.average) }}</strong></td>
