@@ -259,7 +259,7 @@
 
       <td class="tg-0pky">{{ t.total_score }}</td>
       <td>{{ student.total_coefxAv }}</td>
-      <td class="tg-0pky" colspan="2">{{ Class councel decision }}</td>
+      <td class="tg-0pky" colspan="2">Class councel decision </td>
 
       <td class="tg-0pky">{{ t.class_avg }}</td>
       <td>{{ data.class_average|default('') }}</td>
@@ -275,7 +275,7 @@
       <td class="tg-0pky" rowspan="2">{{ t.coef2 }}</td>
       <td rowspan="2">{{ student.total_coef }}</td>
       <td class="tg-0pky" rowspan="2">
-        {{ Promoted }}
+        Promoted 
       </td>
       <td rowspan="2">
         {% if student.average >= 10 %}&#10003;{% endif %}
@@ -298,7 +298,7 @@
       <td class="tg-0pky" rowspan="2">{{ t.a_avg }}</td>
       <td rowspan="2">{{ student.average }}</td>
       <td class="tg-0pky" rowspan="2">
-        {{ Repeat }}
+        Repeat 
       </td>
       <td rowspan="2">
         {% if student.average < 10 and student.average >= 6 %}&#10003;{% endif %}
@@ -320,7 +320,7 @@
 
       <td class="tg-0pky">{{ t.grade2 }}</td>
       <td>{{ student.grade }}</td>
-      <td class="tg-0pky">{{ Dismissed for  }}</td>
+      <td class="tg-0pky"> Dismissed for  </td>
       <td>{% if student.average < 6 %}&#10003;{% endif %}</td>
 
       <td class="tg-0pky">{{ t.success_rate }}</td>
